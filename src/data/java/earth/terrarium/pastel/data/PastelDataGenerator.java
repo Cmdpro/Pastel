@@ -1,7 +1,7 @@
 package earth.terrarium.pastel.data;
 
 import earth.terrarium.pastel.PastelCommon;
-import earth.terrarium.pastel.data.lang.en_us.PastelEnUsProvider;
+import earth.terrarium.pastel.data.lang.PastelLanguageProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -13,15 +13,15 @@ import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = PastelCommon.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class PastelDataGenerator {
-
+	
 	@SubscribeEvent
 	public static void onInitializeDataGenerator(GatherDataEvent event) {
 		PackOutput packOutput = event.getGenerator().getPackOutput();
 		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-
+		
 		PastelBlockTagsProvider blockTagsProvider = new PastelBlockTagsProvider(packOutput, lookupProvider, existingFileHelper);
-
+		
 		event.addProvider(blockTagsProvider);
 		event.addProvider(new PastelItemTagsProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter(), existingFileHelper));
 		event.addProvider(new PastelEnchantmentTagsProvider(packOutput, lookupProvider, existingFileHelper));
@@ -30,9 +30,9 @@ public class PastelDataGenerator {
 		event.addProvider(new PastelCompostableDataMapProvider(packOutput, lookupProvider));
 		event.addProvider(new PastelWaxableDataMapProvider(packOutput, lookupProvider));
 		event.addProvider(new PastelBurnTimeDataMapProvider(packOutput, lookupProvider));
-
+		
 		// Languages
-		event.addProvider(new PastelEnUsProvider(packOutput));
+		event.addProvider(new PastelLanguageProvider(packOutput));
 		
 		
 		event.createDatapackRegistryObjects(PastelDynamicRegistryProvider.createRegistryBuilders());
