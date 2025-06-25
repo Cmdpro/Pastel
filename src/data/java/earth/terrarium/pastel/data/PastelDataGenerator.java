@@ -1,6 +1,7 @@
 package earth.terrarium.pastel.data;
 
 import earth.terrarium.pastel.PastelCommon;
+import earth.terrarium.pastel.data.lang.en_us.PastelEnUsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -30,6 +31,10 @@ public class PastelDataGenerator {
 		event.addProvider(new PastelWaxableDataMapProvider(packOutput, lookupProvider));
 		event.addProvider(new PastelBurnTimeDataMapProvider(packOutput, lookupProvider));
 
+		// Languages
+		event.addProvider(new PastelEnUsProvider(packOutput));
+		
+		
 		event.createDatapackRegistryObjects(PastelDynamicRegistryProvider.createRegistryBuilders());
 	}
 }
