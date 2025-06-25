@@ -19,6 +19,7 @@ public class PastelBlocks {
 		PlantBlocks.addTranslations(provider);
 		PreservationBlocks.addTranslations(provider);
 		ResourceBlocks.addTranslations(provider);
+		WoodBlocks.addTranslations(provider);
 		
 		// Compat
 		AlloyForgeryBlocks.addTranslations(provider);
