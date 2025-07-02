@@ -18,9 +18,13 @@ public class PastelEquipmentEvents {
     }
 
     private static void processRazingMod(PlayerEvent.BreakSpeed event) {
-        var stack = event.getEntity().getMainHandItem();
+        var stack = event
+            .getEntity()
+            .getMainHandItem();
         var tool = stack.get(DataComponents.TOOL);
-        var access = event.getEntity().registryAccess();
+        var access = event
+            .getEntity()
+            .registryAccess();
         var state = event.getState();
 
         if (tool == null)
@@ -28,15 +32,21 @@ public class PastelEquipmentEvents {
 
         var razing = Ench.getLevel(access, PastelEnchantments.RAZING, stack);
         if (razing > 0 && tool.isCorrectForDrops(state)) {
-            float hardness = state.getBlock().defaultDestroyTime();
+            float hardness = state
+                .getBlock()
+                .defaultDestroyTime();
             event.setNewSpeed((float) Math.max(1 + hardness, Math.pow(2, 1 + razing / 8F)));
         }
     }
 
     private static void processInertiaMod(PlayerEvent.BreakSpeed event) {
-        var stack = event.getEntity().getMainHandItem();
+        var stack = event
+            .getEntity()
+            .getMainHandItem();
         var tool = stack.get(DataComponents.TOOL);
-        var access = event.getEntity().registryAccess();
+        var access = event
+            .getEntity()
+            .registryAccess();
         var state = event.getState();
         var original = event.getOriginalSpeed();
 
@@ -47,7 +57,8 @@ public class PastelEquipmentEvents {
         if (inertia > 0) {
             var component = stack.getOrDefault(PastelDataComponentTypes.INERTIA, InertiaComponent.DEFAULT);
             if (state.is(component.lastMined())) {
-                var additionalSpeedPercent = 2.0 * Math.log(component.count()) / Math.log((6 - inertia) * (6 - inertia) + 1);
+                var additionalSpeedPercent = 2.0 * Math.log(component.count()) / Math.log(
+                    (6 - inertia) * (6 - inertia) + 1);
                 event.setNewSpeed((float) (original / 2 + additionalSpeedPercent));
             } else {
                 event.setNewSpeed(original / 4);
@@ -56,8 +67,12 @@ public class PastelEquipmentEvents {
     }
 
     private static void processInexorable(PlayerEvent.BreakSpeed event) {
-        var stack = event.getEntity().getMainHandItem();
-        var access = event.getEntity().registryAccess();
+        var stack = event
+            .getEntity()
+            .getMainHandItem();
+        var access = event
+            .getEntity()
+            .registryAccess();
         var state = event.getState();
         var tool = stack.get(DataComponents.TOOL);
         var original = event.getOriginalSpeed();

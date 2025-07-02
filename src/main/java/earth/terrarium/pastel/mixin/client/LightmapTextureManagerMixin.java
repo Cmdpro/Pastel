@@ -20,38 +20,47 @@ import org.spongepowered.asm.mixin.injection.At;
 
 public class LightmapTextureManagerMixin {
 
-	@Shadow @Final private Minecraft minecraft;
+    @Shadow
+    @Final
+    private Minecraft minecraft;
 
-	@ModifyReturnValue(method = "calculateDarknessScale", at = @At("RETURN"))
-	private float getDarkness(float original) {
-		var lightMod = PastelCommon.CONFIG.DimensionBrightnessMod * 0.25F;
+    @ModifyReturnValue(method = "calculateDarknessScale", at = @At("RETURN"))
+    private float getDarkness(float original) {
+        var lightMod = PastelCommon.CONFIG.DimensionBrightnessMod * 0.25F;
 
-		if (isInDim()) {
-			var darkening = Mth.lerp(DimensionRenderEffects.getDarknessInterpolation(), 0.11F - lightMod, 0.2125F - lightMod);
-			return Math.max(darkening, original);
+        if (isInDim()) {
+            var darkening = Mth.lerp(
+                DimensionRenderEffects.getDarknessInterpolation(), 0.11F - lightMod, 0.2125F - lightMod);
+            return Math.max(darkening, original);
 
-		}
-		return original;
-	}
-	
-	@ModifyExpressionValue(method = "updateLightTexture", at = @At(value = "INVOKE", target = "Ljava/lang/Double;floatValue()F", ordinal = 1))
-	private float decreaseGamma(float gamma) {
-		if (isInDim()) {
-			if (minecraft.getCameraEntity() instanceof LivingEntity living) {
-				gamma -= living.hasEffect(MobEffects.NIGHT_VISION) ? 0.275F : 0F;
-			}
+        }
+        return original;
+    }
 
-			if (DimensionRenderEffects.darkenTicks > 0) {
-				gamma = Mth.lerp(DimensionRenderEffects.getDarknessInterpolation(), gamma, gamma - 25F + PastelCommon.CONFIG.DimensionBrightnessMod);
-			}
-		}
+    @ModifyExpressionValue(method = "updateLightTexture",
+                           at = @At(value = "INVOKE", target = "Ljava/lang/Double;floatValue()F", ordinal = 1))
+    private float decreaseGamma(float gamma) {
+        if (isInDim()) {
+            if (minecraft.getCameraEntity() instanceof LivingEntity living) {
+                gamma -= living.hasEffect(MobEffects.NIGHT_VISION) ? 0.275F : 0F;
+            }
 
-		return gamma;
-	}
+            if (DimensionRenderEffects.darkenTicks > 0) {
+                gamma = Mth.lerp(
+                    DimensionRenderEffects.getDarknessInterpolation(), gamma,
+                    gamma - 25F + PastelCommon.CONFIG.DimensionBrightnessMod
+                );
+            }
+        }
 
-	@Unique
-	private static boolean isInDim() {
-		Minecraft client = Minecraft.getInstance();
-		return PastelDimensions.DIMENSION_KEY.equals(client.player.level().dimension());
-	}
+        return gamma;
+    }
+
+    @Unique
+    private static boolean isInDim() {
+        Minecraft client = Minecraft.getInstance();
+        return PastelDimensions.DIMENSION_KEY.equals(client.player
+                                                         .level()
+                                                         .dimension());
+    }
 }

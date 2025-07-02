@@ -8,10 +8,16 @@ import net.minecraft.nbt.Tag;
 // TODO: migrate to net.minecraft.world.tick ?
 public final class TickLooper {
 
-    public static final Codec<TickLooper> CODEC = RecordCodecBuilder.create(i -> i.group(
-            Codec.INT.fieldOf("max").forGetter(TickLooper::getMaxTick),
-            Codec.INT.fieldOf("current").forGetter(TickLooper::getTick)
-    ).apply(i, TickLooper::new));
+    public static final Codec<TickLooper> CODEC = RecordCodecBuilder.create(i -> i
+        .group(
+            Codec.INT
+                .fieldOf("max")
+                .forGetter(TickLooper::getMaxTick),
+            Codec.INT
+                .fieldOf("current")
+                .forGetter(TickLooper::getTick)
+        )
+        .apply(i, TickLooper::new));
 
     private final int maxTick;
     private int currentTick;
@@ -48,21 +54,21 @@ public final class TickLooper {
     public float getProgress() {
         return (float) currentTick / (float) maxTick;
     }
-    
+
     @Override
     public String toString() {
         return "TickLooper (" + currentTick + "/" + maxTick + ")";
     }
-	
-	public static TickLooper readNbt(CompoundTag nbt) {
-		return new TickLooper(nbt.getInt("max"), nbt.getInt("current"));
-	}
-	
-	public Tag toNbt() {
-		CompoundTag nbt = new CompoundTag();
-		nbt.putInt("max", maxTick);
-		nbt.putInt("current", currentTick);
-		return nbt;
-	}
+
+    public static TickLooper readNbt(CompoundTag nbt) {
+        return new TickLooper(nbt.getInt("max"), nbt.getInt("current"));
+    }
+
+    public Tag toNbt() {
+        CompoundTag nbt = new CompoundTag();
+        nbt.putInt("max", maxTick);
+        nbt.putInt("current", currentTick);
+        return nbt;
+    }
 
 }

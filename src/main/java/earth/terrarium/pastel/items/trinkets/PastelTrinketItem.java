@@ -17,62 +17,65 @@ import java.util.Optional;
 
 public abstract class PastelTrinketItem extends Item implements ICurioItem {
 
-	private final ResourceLocation unlockIdentifier;
+    private final ResourceLocation unlockIdentifier;
 
-	public PastelTrinketItem(Properties settings, ResourceLocation unlockIdentifier) {
-		super(settings);
-		this.unlockIdentifier = unlockIdentifier;
-	}
+    public PastelTrinketItem(Properties settings, ResourceLocation unlockIdentifier) {
+        super(settings);
+        this.unlockIdentifier = unlockIdentifier;
+    }
 
-	public static boolean hasEquipped(SlotContext slotContext, Item item) {
-		return hasEquipped(slotContext.entity(), item);
-	}
+    public static boolean hasEquipped(SlotContext slotContext, Item item) {
+        return hasEquipped(slotContext.entity(), item);
+    }
 
-	public static boolean hasEquipped(LivingEntity entity, Item item) {
-		return getFirstEquipped(entity, item).isPresent();
-	}
+    public static boolean hasEquipped(LivingEntity entity, Item item) {
+        return getFirstEquipped(entity, item).isPresent();
+    }
 
-	public static Optional<ItemStack> getFirstEquipped(LivingEntity entity, Item item) {
-		return CuriosApi.getCuriosInventory(entity).flatMap(inventory -> inventory.findFirstCurio(item)).map(SlotResult::stack);
-	}
+    public static Optional<ItemStack> getFirstEquipped(LivingEntity entity, Item item) {
+        return CuriosApi
+            .getCuriosInventory(entity)
+            .flatMap(inventory -> inventory.findFirstCurio(item))
+            .map(SlotResult::stack);
+    }
 
-	public ResourceLocation getUnlockIdentifier() {
-		return this.unlockIdentifier;
-	}
+    public ResourceLocation getUnlockIdentifier() {
+        return this.unlockIdentifier;
+    }
 
-	@Override
-	public boolean canEquip(SlotContext slotContext, ItemStack stack) {
-		if (slotContext.entity() instanceof Player playerEntity) {
-			// does the player have the matching advancement?
-			if (AdvancementHelper.hasAdvancement(playerEntity, getUnlockIdentifier())) {
-				// Can only a single trinket of that type be equipped at once?
-				if (!canEquipMoreThanOne() && hasEquipped(slotContext.entity(), this)) {
-					return false;
-				}
-				return ICurioItem.super.canEquip(slotContext, stack);
-			}
-		}
-		return false;
-	}
+    @Override
+    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+        if (slotContext.entity() instanceof Player playerEntity) {
+            // does the player have the matching advancement?
+            if (AdvancementHelper.hasAdvancement(playerEntity, getUnlockIdentifier())) {
+                // Can only a single trinket of that type be equipped at once?
+                if (!canEquipMoreThanOne() && hasEquipped(slotContext.entity(), this)) {
+                    return false;
+                }
+                return ICurioItem.super.canEquip(slotContext, stack);
+            }
+        }
+        return false;
+    }
 
-	public boolean canEquipMoreThanOne() {
-		return false;
-	}
+    public boolean canEquipMoreThanOne() {
+        return false;
+    }
 
-	@Override
-	public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-		ICurioItem.super.onEquip(slotContext, prevStack, stack);
-		if (slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
-			PastelAdvancementCriteria.TRINKET_CHANGE.trigger(serverPlayerEntity);
-		}
-	}
+    @Override
+    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        ICurioItem.super.onEquip(slotContext, prevStack, stack);
+        if (slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
+            PastelAdvancementCriteria.TRINKET_CHANGE.trigger(serverPlayerEntity);
+        }
+    }
 
-	@Override
-	public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-		ICurioItem.super.onUnequip(slotContext, newStack, stack);
+    @Override
+    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        ICurioItem.super.onUnequip(slotContext, newStack, stack);
 
-		if (slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
-			PastelAdvancementCriteria.TRINKET_CHANGE.trigger(serverPlayerEntity);
-		}
-	}
+        if (slotContext.entity() instanceof ServerPlayer serverPlayerEntity) {
+            PastelAdvancementCriteria.TRINKET_CHANGE.trigger(serverPlayerEntity);
+        }
+    }
 }

@@ -10,7 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(ReloadableServerRegistries.class)
 public class ReloadableServerRegistriesMixin {
 
-    @ModifyExpressionValue(method = "reload", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/LayeredRegistryAccess;getAccessForLoading(Ljava/lang/Object;)Lnet/minecraft/core/RegistryAccess$Frozen;"))
+    @ModifyExpressionValue(method = "reload", at = @At(value = "INVOKE",
+                                                       target = "Lnet/minecraft/core/LayeredRegistryAccess;" +
+                                                                "getAccessForLoading(Ljava/lang/Object;)" +
+                                                                "Lnet/minecraft/core/RegistryAccess$Frozen;"))
     private static RegistryAccess.Frozen catchRegistryAccess(RegistryAccess.Frozen original) {
         PastelLootGrossHacks.access = original;
         return original;

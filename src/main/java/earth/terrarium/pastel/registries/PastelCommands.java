@@ -14,8 +14,10 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 public class PastelCommands {
 
-	public static void register(RegisterCommandsEvent event) {
-        LiteralCommandNode<CommandSourceStack> spectrumNode = Commands.literal("pastel").build();
+    public static void register(RegisterCommandsEvent event) {
+        LiteralCommandNode<CommandSourceStack> spectrumNode = Commands
+            .literal("pastel")
+            .build();
         ShootingStarCommand.register(spectrumNode);
         SanityCommand.register(spectrumNode);
         PrintConfigCommand.register(spectrumNode);
@@ -24,6 +26,9 @@ public class PastelCommands {
         DumpTagsCommand.register(spectrumNode);
         ResetShadersCommand.register(spectrumNode);
 
-        event.getDispatcher().getRoot().addChild(spectrumNode);
-	}
+        event
+            .getDispatcher()
+            .getRoot()
+            .addChild(spectrumNode);
+    }
 }
