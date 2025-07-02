@@ -23,9 +23,10 @@ public class GoFishCompat {
     public static final ResourceKey<LootTable> NETHER_FISH_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/nether/fish");
     public static final ResourceKey<LootTable> END_FISH_LOOT_TABLE_ID = lootTableKey("gameplay/fishing/end/fish");
 
-    public static final ResourceKey<Enchantment> DEEPFRY_ENCHANTMENT_ID = ResourceKey.create(Registries.ENCHANTMENT,
-                                                                                             ResourceLocation.fromNamespaceAndPath(
-                                                                                                 NAMESPACE, "deepfry")
+    public static final ResourceKey<Enchantment> DEEPFRY_ENCHANTMENT_ID = ResourceKey.create(
+        Registries.ENCHANTMENT,
+        ResourceLocation.fromNamespaceAndPath(
+            NAMESPACE, "deepfry")
     );
 
     public static ResourceKey<LootTable> lootTableKey(String id) {

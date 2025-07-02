@@ -12,12 +12,13 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 public abstract class FluidConvertingDisplay extends PastelDisplay {
 
     public <T extends FluidConvertingRecipe> FluidConvertingDisplay(RecipeHolder<T> recipe) {
-        super(recipe, recipe
-            .value()
-            .getIngredients()
-            .getFirst(), recipe
-                  .value()
-                  .getResultItem(BasicDisplay.registryAccess())
+        super(
+            recipe, recipe
+                .value()
+                .getIngredients()
+                .getFirst(), recipe
+                .value()
+                .getResultItem(BasicDisplay.registryAccess())
         );
     }
 

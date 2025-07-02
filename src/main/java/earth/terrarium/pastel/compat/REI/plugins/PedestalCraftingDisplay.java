@@ -34,10 +34,11 @@ public class PedestalCraftingDisplay extends PastelDisplay {
      * @param recipe The recipe
      */
     public PedestalCraftingDisplay(RecipeHolder<PedestalRecipe> recipe) {
-        super(recipe, mapIngredients(recipe.value()), Collections.singletonList(EntryIngredients.of(recipe
-                                                                                                        .value()
-                                                                                                        .getResultItem(
-                                                                                                            BasicDisplay.registryAccess())))
+        super(
+            recipe, mapIngredients(recipe.value()), Collections.singletonList(EntryIngredients.of(recipe
+                                                                                                      .value()
+                                                                                                      .getResultItem(
+                                                                                                          BasicDisplay.registryAccess())))
         );
         this.pedestalRecipeTier = recipe
             .value()
@@ -69,9 +70,10 @@ public class PedestalCraftingDisplay extends PastelDisplay {
         List<EntryIngredient> list = NonNullList.withSize(9 + powderSlotCount, EntryIngredient.empty());
 
         for (int i = 0; i < ingredientCount; i++) {
-            list.set(recipe.getGridSlotId(i), REIHelper.ofIngredientStack(recipe
-                                                                              .getIngredientStacks()
-                                                                              .get(i))
+            list.set(
+                recipe.getGridSlotId(i), REIHelper.ofIngredientStack(recipe
+                                                                         .getIngredientStacks()
+                                                                         .get(i))
             );
         }
         for (int i = 0; i < powderSlotCount; i++) {

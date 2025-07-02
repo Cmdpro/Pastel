@@ -29,7 +29,7 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
 
     protected @Nullable BlockState detectedState; // detect this block. Null: any block
     protected @Nullable BlockState changeIntoState;
-        // change into this once triggered. Null: stay as is (can be used again and again)
+    // change into this once triggered. Null: stay as is (can be used again and again)
     protected List<String> commands = List.of(); // get executed in order. First command that fails ends the chain
 
     public PreservationBlockDetectorBlockEntity(BlockPos pos, BlockState state) {
@@ -94,13 +94,14 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
         MinecraftServer minecraftServer = serverWorld.getServer();
         AtomicBoolean failed = new AtomicBoolean(false);
         if (!this.commands.isEmpty()) {
-            CommandSourceStack serverCommandSource = new CommandSourceStack(this, Vec3.atCenterOf(
+            CommandSourceStack serverCommandSource = new CommandSourceStack(
+                this, Vec3.atCenterOf(
                 PreservationBlockDetectorBlockEntity.this.worldPosition), Vec2.ZERO, serverWorld, 2,
-                                                                            "PreservationBlockDetector", this
-                                                                                .getLevel()
-                                                                                .getBlockState(this.worldPosition)
-                                                                                .getBlock()
-                                                                                .getName(), minecraftServer, null
+                "PreservationBlockDetector", this
+                    .getLevel()
+                    .getBlockState(this.worldPosition)
+                    .getBlock()
+                    .getName(), minecraftServer, null
             )
                 .withCallback((success, returnValue) -> {
                     if (returnValue < 1) failed.set(true);

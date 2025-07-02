@@ -69,9 +69,10 @@ public class PastelFarmlandBlock extends FarmBlock {
             setBare(entity, state, world, pos);
         }
 
-        entity.causeFallDamage(fallDistance, 1.0F, world
-            .damageSources()
-            .fall()
+        entity.causeFallDamage(
+            fallDistance, 1.0F, world
+                .damageSources()
+                .fall()
         );
     }
 

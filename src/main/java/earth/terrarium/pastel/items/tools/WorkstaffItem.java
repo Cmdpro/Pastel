@@ -41,7 +41,7 @@ import java.util.Map;
 public class WorkstaffItem extends MultiToolItem implements AreaMiningHandler, Preenchanted {
 
     protected static final InkCost BASE_COST_PER_AOE_MINING_RANGE_INCREMENT = new InkCost(InkColors.WHITE, 3);
-        // TODO: make pricier once ink networking is in
+    // TODO: make pricier once ink networking is in
 
     public enum GUIToggle {
         SELECT_SILK_TOUCH("item.pastel.workstaff.message.silk_touch"),

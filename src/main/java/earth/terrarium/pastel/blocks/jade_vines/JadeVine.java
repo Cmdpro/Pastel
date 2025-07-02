@@ -51,8 +51,9 @@ public interface JadeVine {
     }
 
     static void spawnParticlesServer(ServerLevel world, BlockPos blockPos, int amount) {
-        PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(world, Vec3.atCenterOf(
-            blockPos), PastelParticleTypes.JADE_VINES, amount, new Vec3(0.6, 0.6, 0.6), new Vec3(0.12, 0.12, 0.12)
+        PlayParticleWithRandomOffsetAndVelocityPayload.playParticleWithRandomOffsetAndVelocity(
+            world, Vec3.atCenterOf(
+                blockPos), PastelParticleTypes.JADE_VINES, amount, new Vec3(0.6, 0.6, 0.6), new Vec3(0.12, 0.12, 0.12)
         );
     }
 

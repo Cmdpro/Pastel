@@ -32,10 +32,11 @@ public class WrapPresentRecipe extends CustomRecipe {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.withSize(1, Ingredient.EMPTY);
-        list.set(0, Ingredient.of(PastelBlocks.PRESENT
-                                      .get()
-                                      .asItem()
-                                      .getDefaultInstance())
+        list.set(
+            0, Ingredient.of(PastelBlocks.PRESENT
+                                 .get()
+                                 .asItem()
+                                 .getDefaultInstance())
         );
         return list;
     }

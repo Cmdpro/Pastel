@@ -33,11 +33,12 @@ public class DumpRegistriesCommand {
             .registryAccess()
             .registries()
             .forEach(registry -> {
-                File file = new File(directory, registry
-                                                    .key()
-                                                    .location()
-                                                    .toString()
-                                                    .replace(":", "/") + ".txt"
+                File file = new File(
+                    directory, registry
+                                   .key()
+                                   .location()
+                                   .toString()
+                                   .replace(":", "/") + ".txt"
                 );
                 file
                     .getParentFile()

@@ -25,9 +25,10 @@ public abstract class RandomChanceLootConditionMixin {
         if (!original) {
             original = context
                            .getRandom()
-                           .nextFloat() < CloversFavorHelper.rollChance(chance.getFloat(context),
-                                                                        context.getParamOrNull(
-                                                                            LootContextParams.ATTACKING_ENTITY)
+                           .nextFloat() < CloversFavorHelper.rollChance(
+                chance.getFloat(context),
+                context.getParamOrNull(
+                    LootContextParams.ATTACKING_ENTITY)
             );
         }
         return original;

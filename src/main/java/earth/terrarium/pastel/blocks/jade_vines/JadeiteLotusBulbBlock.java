@@ -65,9 +65,10 @@ public class JadeiteLotusBulbBlock extends BushBlock implements BonemealableBloc
             .registryAccess()
             .registryOrThrow(Registries.CONFIGURED_FEATURE)
             .get(PastelConfiguredFeatures.JADEITE_LOTUS)
-            .place(world, world
-                .getChunkSource()
-                .getGenerator(), random, pos
+            .place(
+                world, world
+                    .getChunkSource()
+                    .getGenerator(), random, pos
             );
     }
 

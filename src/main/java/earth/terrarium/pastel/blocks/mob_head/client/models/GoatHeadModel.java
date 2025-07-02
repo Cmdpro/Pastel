@@ -38,11 +38,12 @@ public class GoatHeadModel extends PastelSkullModel {
                 .addBox(0.0F, -2.0F, -7.0F, 0.0F, 7.0F, 5.0F), PartPose.ZERO
         );
 
-        head.addOrReplaceChild("cube_r1", CubeListBuilder
-                                   .create()
-                                   .texOffs(34, 46)
-                                   .addBox(-2.0F, -4.0F, -5.0F, 5.0F, 7.0F, 10.0F),
-                               PartPose.offsetAndRotation(-0.5F, -3.5F, -2.0F, 0.7854F, 0.0F, 0.0F)
+        head.addOrReplaceChild(
+            "cube_r1", CubeListBuilder
+                .create()
+                .texOffs(34, 46)
+                .addBox(-2.0F, -4.0F, -5.0F, 5.0F, 7.0F, 10.0F),
+            PartPose.offsetAndRotation(-0.5F, -3.5F, -2.0F, 0.7854F, 0.0F, 0.0F)
         );
 
         return LayerDefinition.create(modelData, 64, 64);

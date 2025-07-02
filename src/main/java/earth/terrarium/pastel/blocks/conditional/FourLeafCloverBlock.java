@@ -35,16 +35,18 @@ public class FourLeafCloverBlock extends CloverBlock implements RevelationAware 
     @Override
     public Map<BlockState, BlockState> getBlockStateCloaks() {
         Map<BlockState, BlockState> map = new Hashtable<>();
-        map.put(this.defaultBlockState(), PastelBlocks.CLOVER
-            .get()
-            .defaultBlockState()
+        map.put(
+            this.defaultBlockState(), PastelBlocks.CLOVER
+                .get()
+                .defaultBlockState()
         );
         return map;
     }
 
     @Override
     public Tuple<Item, Item> getItemCloak() {
-        return new Tuple<>(this.asItem(), PastelBlocks.CLOVER
+        return new Tuple<>(
+            this.asItem(), PastelBlocks.CLOVER
             .get()
             .asItem()
         );

@@ -24,7 +24,8 @@ public class RuinBlock extends DecayBlock {
 
     public RuinBlock(Properties settings) {
         super(settings, PastelCommon.CONFIG.RuinDecayTickRate, PastelCommon.CONFIG.RuinCanDestroyBlockEntities, 3, 5F);
-        registerDefaultState(getStateDefinition().any().setValue(CONVERSION, Conversion.NONE));
+        registerDefaultState(getStateDefinition().any()
+                                                 .setValue(CONVERSION, Conversion.NONE));
     }
 
     @Override
@@ -63,21 +64,25 @@ public class RuinBlock extends DecayBlock {
     @Override
     protected @Nullable BlockState getSpreadState(
         BlockState stateToSpreadFrom, BlockState stateToSpreadTo, Level world, BlockPos stateToSpreadToPos) {
-        if (stateToSpreadTo.getCollisionShape(world, stateToSpreadToPos).isEmpty() || stateToSpreadTo.is(
+        if (stateToSpreadTo.getCollisionShape(world, stateToSpreadToPos)
+                           .isEmpty() || stateToSpreadTo.is(
             PastelBlockTags.RUIN_SAFE)) {
             return null;
         }
 
         if (stateToSpreadTo.is(PastelBlockTags.RUIN_SPECIAL_CONVERSIONS)) {
-            return this.defaultBlockState().setValue(CONVERSION, Conversion.SPECIAL);
+            return this.defaultBlockState()
+                       .setValue(CONVERSION, Conversion.SPECIAL);
         } else if (stateToSpreadTo.is(PastelBlockTags.RUIN_CONVERSIONS)) {
             // Protect the end portal to not lock players in the dim
-            if (world.dimension().equals(Level.END) && Math.abs(stateToSpreadToPos.getX()) < 8 && Math.abs(
+            if (world.dimension()
+                     .equals(Level.END) && Math.abs(stateToSpreadToPos.getX()) < 8 && Math.abs(
                 stateToSpreadToPos.getZ()) < 8) {
                 return null;
             }
 
-            return this.defaultBlockState().setValue(CONVERSION, Conversion.DEFAULT);
+            return this.defaultBlockState()
+                       .setValue(CONVERSION, Conversion.DEFAULT);
         }
         return stateToSpreadFrom.setValue(CONVERSION, Conversion.NONE);
     }
@@ -88,27 +93,32 @@ public class RuinBlock extends DecayBlock {
 
         if (state.getValue(RuinBlock.CONVERSION) != Conversion.NONE && newState.isAir()) {
             if (world.dimension() == Level.NETHER) {
-                if (pos.getY() == world.getMinBuildHeight() + world.dimensionType().logicalHeight() -
+                if (pos.getY() == world.getMinBuildHeight() + world.dimensionType()
+                                                                   .logicalHeight() -
                                   1) { // Attempt to match the nether ceiling. Tricky...
                     world.setBlock(
-                        pos, PastelBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState()
+                        pos, PastelBlocks.DEEPER_DOWN_PORTAL.get()
+                                                            .defaultBlockState()
                                                             .setValue(DeeperDownPortalBlock.FACING_UP, true), 3
                     );
                 } else if (pos.getY() == world.getMinBuildHeight()) {
                     world.setBlock(
-                        pos, PastelBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState()
+                        pos, PastelBlocks.DEEPER_DOWN_PORTAL.get()
+                                                            .defaultBlockState()
                                                             .setValue(DeeperDownPortalBlock.FACING_UP, false), 3
                     );
                 }
             } else if (world.dimension() == Level.OVERWORLD && pos.getY() == world.getMinBuildHeight()) {
                 world.setBlock(
-                    pos, PastelBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState()
+                    pos, PastelBlocks.DEEPER_DOWN_PORTAL.get()
+                                                        .defaultBlockState()
                                                         .setValue(DeeperDownPortalBlock.FACING_UP, false), 3
                 );
             } else if (world.dimension() == PastelDimensions.DIMENSION_KEY &&
                        pos.getY() == world.getMaxBuildHeight() - 1) { // highest layer cannot be built on
                 world.setBlock(
-                    pos, PastelBlocks.DEEPER_DOWN_PORTAL.get().defaultBlockState()
+                    pos, PastelBlocks.DEEPER_DOWN_PORTAL.get()
+                                                        .defaultBlockState()
                                                         .setValue(DeeperDownPortalBlock.FACING_UP, true), 3
                 );
             }

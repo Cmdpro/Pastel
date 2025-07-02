@@ -37,16 +37,18 @@ public interface RedstonePoweredBlock {
     }
 
     default void power(Level world, BlockPos pos) {
-        world.setBlockAndUpdate(pos, world
-            .getBlockState(pos)
-            .setValue(BlockStateProperties.POWERED, true)
+        world.setBlockAndUpdate(
+            pos, world
+                .getBlockState(pos)
+                .setValue(BlockStateProperties.POWERED, true)
         );
     }
 
     default void unPower(Level world, BlockPos pos) {
-        world.setBlockAndUpdate(pos, world
-            .getBlockState(pos)
-            .setValue(BlockStateProperties.POWERED, false)
+        world.setBlockAndUpdate(
+            pos, world
+                .getBlockState(pos)
+                .setValue(BlockStateProperties.POWERED, false)
         );
     }
 

@@ -19,7 +19,7 @@ public class TotalCappedInkStorage implements InkStorage {
     protected final long maxEnergyTotal;
     protected final Map<InkColor, Long> storedEnergy = new Object2LongArrayMap<>();
     protected long currentTotal;
-        // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
+    // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 
     public TotalCappedInkStorage(long maxEnergyTotal, Map<InkColor, Long> energy) {
         this.maxEnergyTotal = maxEnergyTotal;

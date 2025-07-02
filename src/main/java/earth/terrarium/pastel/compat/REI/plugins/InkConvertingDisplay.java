@@ -19,9 +19,10 @@ public class InkConvertingDisplay extends PastelDisplay {
     protected final long amount;
 
     public InkConvertingDisplay(@NotNull RecipeHolder<InkConvertingRecipe> recipe) {
-        super(recipe, EntryIngredients.ofIngredients(recipe
-                                                         .value()
-                                                         .getIngredients()), List.of()
+        super(
+            recipe, EntryIngredients.ofIngredients(recipe
+                                                       .value()
+                                                       .getIngredients()), List.of()
         );
         this.color = recipe
             .value()

@@ -24,7 +24,7 @@ public class FailingBlock extends DecayBlock {
     public static final MapCodec<FailingBlock> CODEC = simpleCodec(FailingBlock::new);
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
-        // failing may spread 15 blocks max. It consuming obsidian resets that value
+    // failing may spread 15 blocks max. It consuming obsidian resets that value
 
     public FailingBlock(Properties settings) {
         super(

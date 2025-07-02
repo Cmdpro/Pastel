@@ -106,9 +106,9 @@ public class VectorCast {
         if (hit) {
             return Optional.of(new CollisionResult<>(
                 world, entity, entity instanceof LivingEntity
-                                                                    ? CollisionResult.CollisionType.LIVING
-                                                                    : CollisionResult.CollisionType.NON_LIVING,
-                                                     closestPointToIntercept
+                               ? CollisionResult.CollisionType.LIVING
+                               : CollisionResult.CollisionType.NON_LIVING,
+                closestPointToIntercept
             ));
         }
 

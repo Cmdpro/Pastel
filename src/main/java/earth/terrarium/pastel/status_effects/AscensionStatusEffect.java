@@ -30,7 +30,7 @@ public class AscensionStatusEffect extends MobEffect {
         } else if (applyDivinity) {
             entity.addEffect(new MobEffectInstance(
                 PastelMobEffects.DIVINITY, MUSIC_DURATION_TICKS - MUSIC_INTRO_TICKS,
-                                                   DivinityStatusEffect.ASCENSION_AMPLIFIER
+                DivinityStatusEffect.ASCENSION_AMPLIFIER
             ));
             return false;
         }

@@ -54,9 +54,10 @@ public class NephriteBlossomBulbBlock extends BushBlock implements BonemealableB
             .registryAccess()
             .registryOrThrow(Registries.CONFIGURED_FEATURE)
             .get(PastelConfiguredFeatures.NEPHRITE_BLOSSOM_BULB)
-            .place(world, world
-                .getChunkSource()
-                .getGenerator(), random, pos
+            .place(
+                world, world
+                    .getChunkSource()
+                    .getGenerator(), random, pos
             );
     }
 }

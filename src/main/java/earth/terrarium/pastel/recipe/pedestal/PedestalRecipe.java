@@ -45,7 +45,7 @@ public abstract class PedestalRecipe extends GatedStackPastelRecipe<PedestalReci
     protected final float experience;
     protected final int craftingTime;
     protected final boolean skipRecipeRemainders;
-        // true means the recipe does not return remainders, like empty buckets from water buckets
+    // true means the recipe does not return remainders, like empty buckets from water buckets
     // since there are a few recipes that are basically compacting recipes
     // they could be crafted ingots>block and block>ingots back
     // In that case:

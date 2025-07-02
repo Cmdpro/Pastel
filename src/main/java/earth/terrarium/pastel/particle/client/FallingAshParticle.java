@@ -31,7 +31,7 @@ public class FallingAshParticle extends TextureSheetParticle {
     private int slowTicks, axisTicks = 0;
 
     private static final BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
-        // to prevent us from having to create lots of BlockPos objects per (render) tick
+    // to prevent us from having to create lots of BlockPos objects per (render) tick
 
     protected FallingAshParticle(
         ClientLevel clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ,

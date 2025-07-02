@@ -40,9 +40,10 @@ public class FoundryHelper {
                 returnItemStacks.add(is);
             } else {
                 while (!smeltedStack.isEmpty()) {
-                    int currentAmount = Math.min(smeltedStack.getCount(), smeltedStack
-                        .getItem()
-                        .getDefaultMaxStackSize()
+                    int currentAmount = Math.min(
+                        smeltedStack.getCount(), smeltedStack
+                            .getItem()
+                            .getDefaultMaxStackSize()
                     );
                     ItemStack currentStack = smeltedStack.copyWithCount(currentAmount);
                     returnItemStacks.add(currentStack);

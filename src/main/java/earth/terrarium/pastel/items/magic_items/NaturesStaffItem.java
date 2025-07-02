@@ -145,7 +145,7 @@ public class NaturesStaffItem extends Item implements InkPowered {
             if (hitResult.getType() == HitResult.Type.BLOCK) {
                 useOn(new UseOnContext(
                     world, player, player.getUsedItemHand(),
-                                       player.getItemInHand(player.getUsedItemHand()), (BlockHitResult) hitResult
+                    player.getItemInHand(player.getUsedItemHand()), (BlockHitResult) hitResult
                 ));
             }
         }

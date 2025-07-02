@@ -19,7 +19,7 @@ public class IndividualCappedInkStorage implements InkStorage {
     protected final long maxEnergyPerColor;
     protected final Map<InkColor, Long> storedEnergy = new Object2LongArrayMap<>();
     protected long currentTotal;
-        // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
+    // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
 
     // support all ink colors
     public IndividualCappedInkStorage(long maxEnergyPerColor) {

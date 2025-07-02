@@ -51,7 +51,7 @@ public class CrystallarieumRecipe extends GatedPastelRecipe<SingleRecipeInput> {
     protected final List<CrystallarieumCatalyst> catalysts;
     protected final Optional<FluidIngredient> medium;
     protected final List<ItemStack> additionalResults;
-        // these aren't actual results, but recipe managers will treat it as such, showing this recipe as a way to
+    // these aren't actual results, but recipe managers will treat it as such, showing this recipe as a way to
     // get them. Use for drops of the growth blocks, for example
 
     public CrystallarieumRecipe(

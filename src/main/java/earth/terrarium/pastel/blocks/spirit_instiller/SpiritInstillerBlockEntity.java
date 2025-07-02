@@ -549,9 +549,9 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity
         if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
             itemBowlBlockEntity.spawnOrbParticles(new Vec3(
                 this.worldPosition.getX() + 0.5,
-                                                           this.worldPosition.getY() + 1.0 +
-                                                           platformPos.at(0, world.getGameTime()) / 16.0,
-                                                           this.worldPosition.getZ() + 0.5
+                this.worldPosition.getY() + 1.0 +
+                platformPos.at(0, world.getGameTime()) / 16.0,
+                this.worldPosition.getZ() + 0.5
             ));
         }
 
@@ -560,9 +560,9 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity
         if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
             itemBowlBlockEntity.spawnOrbParticles(new Vec3(
                 this.worldPosition.getX() + 0.5,
-                                                           this.worldPosition.getY() + 1.0 +
-                                                           platformPos.at(0, world.getGameTime()) / 16.0,
-                                                           this.worldPosition.getZ() + 0.5
+                this.worldPosition.getY() + 1.0 +
+                platformPos.at(0, world.getGameTime()) / 16.0,
+                this.worldPosition.getZ() + 0.5
             ));
         }
     }

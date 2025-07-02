@@ -15,14 +15,16 @@ public class AnvilCrushingDisplay extends PastelDisplay {
     public final float crushedItemsPerPointOfDamage;
 
     public AnvilCrushingDisplay(RecipeHolder<AnvilCrushingRecipe> recipe) {
-        super(recipe, recipe
-            .value()
-            .getIngredients()
-            .stream()
-            .map(EntryIngredients::ofIngredient)
-            .toList(), Collections.singletonList(EntryIngredients.of(recipe
-                                                                         .value()
-                                                                         .getResultItem(BasicDisplay.registryAccess())))
+        super(
+            recipe, recipe
+                .value()
+                .getIngredients()
+                .stream()
+                .map(EntryIngredients::ofIngredient)
+                .toList(), Collections.singletonList(EntryIngredients.of(recipe
+                                                                             .value()
+                                                                             .getResultItem(
+                                                                                 BasicDisplay.registryAccess())))
         );
         this.experience = recipe
             .value()

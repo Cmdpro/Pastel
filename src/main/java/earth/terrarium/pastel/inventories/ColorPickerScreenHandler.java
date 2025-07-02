@@ -89,7 +89,7 @@ public class ColorPickerScreenHandler extends AbstractContainerMenu implements I
             for (int k = 0; k < 9; ++k) {
                 this.addSlot(new Slot(
                     playerInventory, k + j * 9 + 9, PLAYER_INVENTORY_START_X + k * 18,
-                                      PLAYER_INVENTORY_START_Y + j * 18
+                    PLAYER_INVENTORY_START_Y + j * 18
                 ));
             }
         }

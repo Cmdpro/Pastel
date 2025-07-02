@@ -41,17 +41,19 @@ public class RedstoneInteractionBlock extends Block {
 
     @Override
     public BlockState rotate(BlockState state, Rotation rotation) {
-        return state.setValue(ORIENTATION, rotation
-            .rotation()
-            .rotate(state.getValue(ORIENTATION))
+        return state.setValue(
+            ORIENTATION, rotation
+                .rotation()
+                .rotate(state.getValue(ORIENTATION))
         );
     }
 
     @Override
     public BlockState mirror(BlockState state, Mirror mirror) {
-        return state.setValue(ORIENTATION, mirror
-            .rotation()
-            .rotate(state.getValue(ORIENTATION))
+        return state.setValue(
+            ORIENTATION, mirror
+                .rotation()
+                .rotate(state.getValue(ORIENTATION))
         );
     }
 
@@ -79,9 +81,10 @@ public class RedstoneInteractionBlock extends Block {
         return this
             .defaultBlockState()
             .setValue(ORIENTATION, FrontAndTop.fromFrontAndTop(direction, direction2))
-            .setValue(TRIGGERED, ctx
-                .getLevel()
-                .hasNeighborSignal(ctx.getClickedPos())
+            .setValue(
+                TRIGGERED, ctx
+                    .getLevel()
+                    .hasNeighborSignal(ctx.getClickedPos())
             );
     }
 

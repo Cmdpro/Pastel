@@ -49,8 +49,9 @@ public class DumpTagsCommand {
                             .getSecond()
                             .key()
                             .location();
-                        File tagFile = new File(baseDir, tagId.getNamespace() + "/" + registryId.getPath() + "/" +
-                                                         tagId.getPath() + ".txt"
+                        File tagFile = new File(
+                            baseDir, tagId.getNamespace() + "/" + registryId.getPath() + "/" +
+                                     tagId.getPath() + ".txt"
                         );
 
                         try {

@@ -30,7 +30,7 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem implements SlotBackgr
 
     public static final int COOLDOWN_DURATION_TICKS = 10;
     public static final InkCost PROJECTILE_COST = new InkCost(InkColors.WHITE, 50);
-        // TODO: make pricier once ink networking is in
+    // TODO: make pricier once ink networking is in
 
     public GlassCrestWorkstaffItem(Tier material, int attackDamage, float attackSpeed, Properties settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -54,9 +54,10 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem implements SlotBackgr
                     .getCooldowns()
                     .addCooldown(this, COOLDOWN_DURATION_TICKS);
                 if (!world.isClientSide) {
-                    user.playNotifySound(PastelSoundEvents.LIGHT_CRYSTAL_RING, SoundSource.PLAYERS, 0.5F, 0.75F + user
-                        .getRandom()
-                        .nextFloat()
+                    user.playNotifySound(
+                        PastelSoundEvents.LIGHT_CRYSTAL_RING, SoundSource.PLAYERS, 0.5F, 0.75F + user
+                            .getRandom()
+                            .nextFloat()
                     );
                     MiningProjectileEntity.shoot(world, user, user.getItemInHand(hand));
                 }

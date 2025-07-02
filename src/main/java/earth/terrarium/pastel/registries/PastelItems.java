@@ -1867,7 +1867,7 @@ public class PastelItems {
     // Ink storage
     public static final DeferredItem<InkFlaskItem> INK_FLASK = register(
         item("ink_flask", () -> new InkFlaskItem(IS.of(1), 64 * 64 * 100), InkColors.WHITE));
-        // 64 stacks of pigments (1 pigment => 100 energy)
+    // 64 stacks of pigments (1 pigment => 100 energy)
     public static final DeferredItem<InkAssortmentItem> INK_ASSORTMENT = register(
         simple(item("ink_assortment", () -> new InkAssortmentItem(IS.of(1), 64 * 100), InkColors.WHITE)));
     public static final DeferredItem<PigmentPaletteItem> PIGMENT_PALETTE = register(simple(item(

@@ -33,7 +33,7 @@ public class AshenCircletItem extends PastelTrinketItem {
     public static final long COOLDOWN_TICKS = 3000;
 
     public static final double LAVA_MOVEMENT_SPEED_MOD = 0.4;
-        // vanilla uses 0.5 to slow the player down to half its speed
+    // vanilla uses 0.5 to slow the player down to half its speed
     public static final double LAVA_VIEW_DISTANCE_MOD = 24.0;
 
     public AshenCircletItem(Properties settings) {

@@ -37,7 +37,7 @@ public class ColorSelectionWidget extends AbstractWidget {
     protected final Screen screen;
 
     final List<Tuple<InkColor, Boolean>> usableColors = new ArrayList<>();
-        // stores if a certain color should be displayed
+    // stores if a certain color should be displayed
 
     final int selectedDotX;
     final int selectedDotY;

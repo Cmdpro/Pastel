@@ -38,17 +38,19 @@ public class PiglinHeadModel extends PastelSkullModel {
             PartPose.ZERO
         );
 
-        head.addOrReplaceChild("cube_r1", CubeListBuilder
-                                   .create()
-                                   .texOffs(51, 6)
-                                   .addBox(0.0F, -1.0F, -2.0F, 1.0F, 5.0F, 4.0F, CubeDeformation.NONE),
-                               PartPose.offsetAndRotation(5.0F, -6.0F, 0.0F, 0.0F, 0.0F, -0.3927F)
+        head.addOrReplaceChild(
+            "cube_r1", CubeListBuilder
+                .create()
+                .texOffs(51, 6)
+                .addBox(0.0F, -1.0F, -2.0F, 1.0F, 5.0F, 4.0F, CubeDeformation.NONE),
+            PartPose.offsetAndRotation(5.0F, -6.0F, 0.0F, 0.0F, 0.0F, -0.3927F)
         );
-        head.addOrReplaceChild("cube_r2", CubeListBuilder
-                                   .create()
-                                   .texOffs(39, 6)
-                                   .addBox(-1.0F, -1.0F, -2.0F, 1.0F, 5.0F, 4.0F, CubeDeformation.NONE),
-                               PartPose.offsetAndRotation(-5.0F, -6.0F, 0.0F, 0.0F, 0.0F, 0.3927F)
+        head.addOrReplaceChild(
+            "cube_r2", CubeListBuilder
+                .create()
+                .texOffs(39, 6)
+                .addBox(-1.0F, -1.0F, -2.0F, 1.0F, 5.0F, 4.0F, CubeDeformation.NONE),
+            PartPose.offsetAndRotation(-5.0F, -6.0F, 0.0F, 0.0F, 0.0F, 0.3927F)
         );
 
         return LayerDefinition.create(modelData, 64, 64);

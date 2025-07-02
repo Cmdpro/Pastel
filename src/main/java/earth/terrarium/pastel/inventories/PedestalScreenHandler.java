@@ -127,7 +127,7 @@ public class PedestalScreenHandler extends RecipeBookMenu<RecipeInput, Recipe<Re
         // crafting tablet slot
         this.addSlot(new StackFilterSlot(
             blockEntity, PedestalBlockEntity.CRAFTING_TABLET_SLOT_ID, 93, 19,
-                                         PastelItems.CRAFTING_TABLET.get()
+            PastelItems.CRAFTING_TABLET.get()
         ));
 
         // preview slot

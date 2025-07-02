@@ -13,11 +13,12 @@ public interface SplittableItem {
     boolean canSplit(ServerPlayer player, InteractionHand activeHand, ItemStack stack);
 
     default void sign(ServerPlayer player, ItemStack stack) {
-        stack.set(PastelDataComponentTypes.PAIRED_ITEM, new PairedItemComponent(player
-                                                                                    .level()
-                                                                                    .getGameTime() + player
-                                                                                    .getUUID()
-                                                                                    .getMostSignificantBits())
+        stack.set(
+            PastelDataComponentTypes.PAIRED_ITEM, new PairedItemComponent(player
+                                                                              .level()
+                                                                              .getGameTime() + player
+                                                                              .getUUID()
+                                                                              .getMostSignificantBits())
         );
     }
 

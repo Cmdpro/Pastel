@@ -15,9 +15,10 @@ public abstract class PastelItemInformationDisplay extends PastelDisplay {
     protected final Component description;
 
     public PastelItemInformationDisplay(RecipeHolder<? extends DescriptiveGatedRecipe<?>> recipe) {
-        super(recipe, Collections.singletonList(EntryIngredients.of(recipe
-                                                                        .value()
-                                                                        .getItem())), Collections.emptyList()
+        super(
+            recipe, Collections.singletonList(EntryIngredients.of(recipe
+                                                                      .value()
+                                                                      .getItem())), Collections.emptyList()
         );
         this.item = recipe
             .value()

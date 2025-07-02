@@ -497,7 +497,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
                     splitInstances.add(new InkPoweredStatusEffectInstance(
                         new MobEffectInstance(
                             instance.getEffect(), newDuration, newAmplifier, instance.isAmbient(),
-                                              instance.isVisible()
+                            instance.isVisible()
                         ), poweredInstance.getInkCost(), poweredInstance.getColor(), poweredInstance.isUnidentifiable(),
                         poweredInstance.isIncurable()
                     ));

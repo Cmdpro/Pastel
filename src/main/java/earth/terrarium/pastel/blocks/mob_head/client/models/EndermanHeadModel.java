@@ -24,15 +24,17 @@ public class EndermanHeadModel extends PastelSkullModel {
         MeshDefinition modelData = new MeshDefinition();
         PartDefinition modelPartData = modelData.getRoot();
 
-        PartDefinition head = modelPartData.addOrReplaceChild(PartNames.HEAD, CubeListBuilder
-            .create()
-            .texOffs(0, 0)
-            .addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F), PartPose.ZERO
+        PartDefinition head = modelPartData.addOrReplaceChild(
+            PartNames.HEAD, CubeListBuilder
+                .create()
+                .texOffs(0, 0)
+                .addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F), PartPose.ZERO
         );
-        head.addOrReplaceChild(PartNames.JAW, CubeListBuilder
-            .create()
-            .texOffs(0, 16)
-            .addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(-0.5F)), PartPose.ZERO
+        head.addOrReplaceChild(
+            PartNames.JAW, CubeListBuilder
+                .create()
+                .texOffs(0, 16)
+                .addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(-0.5F)), PartPose.ZERO
         );
 
         return LayerDefinition.create(modelData, 64, 32);

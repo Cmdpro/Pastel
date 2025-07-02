@@ -15,10 +15,11 @@ public class ParticleSpawnerScreenHandler extends AbstractContainerMenu {
     protected ParticleSpawnerBlockEntity blockEntity;
 
     public ParticleSpawnerScreenHandler(int syncId, Inventory inventory, RegistryFriendlyByteBuf buf) {
-        this(syncId, inventory, inventory.player
-            .level()
-            .getBlockEntity(BlockPos.STREAM_CODEC.decode(buf), PastelBlockEntities.PARTICLE_SPAWNER.get())
-            .orElseThrow()
+        this(
+            syncId, inventory, inventory.player
+                .level()
+                .getBlockEntity(BlockPos.STREAM_CODEC.decode(buf), PastelBlockEntities.PARTICLE_SPAWNER.get())
+                .orElseThrow()
         );
     }
 

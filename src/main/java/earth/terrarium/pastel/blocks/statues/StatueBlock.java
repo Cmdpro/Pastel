@@ -51,9 +51,10 @@ public class StatueBlock extends DecoStoneBlock {
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
         return this
             .defaultBlockState()
-            .setValue(FACING, ctx
-                .getHorizontalDirection()
-                .getOpposite()
+            .setValue(
+                FACING, ctx
+                    .getHorizontalDirection()
+                    .getOpposite()
             );
     }
 

@@ -11,15 +11,18 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 public class PastelDynamicRegistryProvider {
     public static RegistrySetBuilder createRegistryBuilders() {
         return new RegistrySetBuilder()
-            .add(Registries.ENCHANTMENT, registerable -> PastelEnchantments.provideEnchantments(
-                new DatagenProxy.BootstrapContext<>(registerable))
+            .add(
+                Registries.ENCHANTMENT, registerable -> PastelEnchantments.provideEnchantments(
+                    new DatagenProxy.BootstrapContext<>(registerable))
             )
-            .add(PastelRegistryKeys.RESONANCE_PROCESSOR,
-                 registerable -> PastelResonanceProcessors.provideResonanceProcessors(
-                     new DatagenProxy.BootstrapContext<>(registerable))
+            .add(
+                PastelRegistryKeys.RESONANCE_PROCESSOR,
+                registerable -> PastelResonanceProcessors.provideResonanceProcessors(
+                    new DatagenProxy.BootstrapContext<>(registerable))
             )
-            .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, registerable -> PastelPlacedFeatures.addBiomeModifications(
-                new DatagenProxy.BootstrapContext<>(registerable))
+            .add(
+                NeoForgeRegistries.Keys.BIOME_MODIFIERS, registerable -> PastelPlacedFeatures.addBiomeModifications(
+                    new DatagenProxy.BootstrapContext<>(registerable))
             );
     }
 }

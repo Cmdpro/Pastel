@@ -31,9 +31,10 @@ public class ModifyDropsResonanceProcessor extends ResonanceProcessor {
                     () -> "Registering a Resonance Drop that matches on everything!") : DataResult.success(block))
                 .forGetter(c -> c.blockPredicate),
             Codec
-                .mapPair(Ingredient.CODEC_NONEMPTY.fieldOf("input"), BuiltInRegistries.ITEM
-                    .byNameCodec()
-                    .fieldOf("output")
+                .mapPair(
+                    Ingredient.CODEC_NONEMPTY.fieldOf("input"), BuiltInRegistries.ITEM
+                        .byNameCodec()
+                        .fieldOf("output")
                 )
                 .codec()
                 .listOf()

@@ -24,10 +24,11 @@ public class SpiritInstillingDisplay extends PastelDisplay {
     protected final int craftingTime;
 
     public SpiritInstillingDisplay(@NotNull RecipeHolder<SpiritInstillerRecipe> recipe) {
-        super(recipe, REIHelper.toEntryIngredients(recipe
-                                                       .value()
-                                                       .getIngredientStacks()),
-              Collections.singletonList(buildOutput(recipe.value()))
+        super(
+            recipe, REIHelper.toEntryIngredients(recipe
+                                                     .value()
+                                                     .getIngredientStacks()),
+            Collections.singletonList(buildOutput(recipe.value()))
         );
         this.experience = recipe
             .value()

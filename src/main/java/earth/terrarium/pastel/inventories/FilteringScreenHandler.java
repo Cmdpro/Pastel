@@ -69,7 +69,7 @@ public class FilteringScreenHandler extends AbstractContainerMenu {
                         break slotDraw;
                     this.addSlot(new FilterSlot(
                         filterInventory, index, startX + k * 23,
-                                                18 + i * (FilteringScreen.STRIP_HEIGHT + 8)
+                        18 + i * (FilteringScreen.STRIP_HEIGHT + 8)
                     ));
                     index++;
                 }

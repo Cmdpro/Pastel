@@ -181,10 +181,10 @@ public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<Gat
 
         final var itemUse = new DynamicTextWidget(
             c -> new Tuple<>(
-            Component
-                .translatable(EnchanterBlockEntity.ITEM_TRANS, itemScaling.apply(indexer))
-                .getVisualOrderText(), NORMAL_COLOR
-        ), 67, 70, false
+                Component
+                    .translatable(EnchanterBlockEntity.ITEM_TRANS, itemScaling.apply(indexer))
+                    .getVisualOrderText(), NORMAL_COLOR
+            ), 67, 70, false
         );
         widgets.add(itemUse);
 

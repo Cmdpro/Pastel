@@ -917,7 +917,7 @@ public class PastelBlocks {
     ));
     public static final DeferredBlock<Block> BISMUTH_BLOCK = register(simple(blockWithItem(
         "bismuth_block", () -> new Block(gemstoneBlock(MapColor.WARPED_STEM, SoundType.CHAIN)), InkColors.CYAN)));
-        // Once we unfuck the datagen remember to ensure this still has its mirrored form
+    // Once we unfuck the datagen remember to ensure this still has its mirrored form
 
     // DD BLOCKS
     private static final float BLACKSLAG_HARDNESS = 5.0F;
@@ -2979,25 +2979,25 @@ public class PastelBlocks {
                                                                                            ResourceLocation ash
                                                                                                =
                                                                                                TextureMapping.getBlockTexture(
-                                                                                               PastelBlocks.ASH.get());
+                                                                                                   PastelBlocks.ASH.get());
                                                                                            ResourceLocation ash2
                                                                                                =
                                                                                                TextureMapping.getBlockTexture(
-                                                                                               PastelBlocks.ASH.get(),
-                                                                                               "2"
-                                                                                           );
+                                                                                                   PastelBlocks.ASH.get(),
+                                                                                                   "2"
+                                                                                               );
                                                                                            ResourceLocation ash3
                                                                                                =
                                                                                                TextureMapping.getBlockTexture(
-                                                                                               PastelBlocks.ASH.get(),
-                                                                                               "3"
-                                                                                           );
+                                                                                                   PastelBlocks.ASH.get(),
+                                                                                                   "3"
+                                                                                               );
                                                                                            ResourceLocation ash4
                                                                                                =
                                                                                                TextureMapping.getBlockTexture(
-                                                                                               PastelBlocks.ASH.get(),
-                                                                                               "4"
-                                                                                           );
+                                                                                                   PastelBlocks.ASH.get(),
+                                                                                                   "4"
+                                                                                               );
                                                                                            if (height == 8)
                                                                                                return List.of(
                                                                                                    PastelModelHelper.createModelVariant(
@@ -3833,8 +3833,10 @@ public class PastelBlocks {
                                                                                                        FlexLanternBlock.TALL
                                                                                                    )
                                                                                                    .generate(
-                                                                                                       (diagonal,
-                                                                                                        tall) -> PastelModelHelper.createModelVariant(
+                                                                                                       (
+                                                                                                           diagonal,
+                                                                                                           tall
+                                                                                                       ) -> PastelModelHelper.createModelVariant(
                                                                                                            PastelTexturedModels
                                                                                                                .baseTransLantern(
                                                                                                                    diagonal,
@@ -4421,7 +4423,7 @@ public class PastelBlocks {
                                                                                       ResourceLocation fronds
                                                                                           =
                                                                                           ModelLocationUtils.getModelLocation(
-                                                                                          block, "_base");
+                                                                                              block, "_base");
                                                                                       return MultiPartGenerator
                                                                                           .multiPart(block)
                                                                                           .with(
@@ -4523,7 +4525,7 @@ public class PastelBlocks {
                                                                                    ResourceLocation base
                                                                                        =
                                                                                        ModelLocationUtils.getModelLocation(
-                                                                                       block, "_base");
+                                                                                           block, "_base");
                                                                                    return MultiPartGenerator
                                                                                        .multiPart(block)
                                                                                        .with(
@@ -5170,20 +5172,20 @@ public class PastelBlocks {
                                                                                );
                                                                                ResourceLocation off
                                                                                    =
-                                                                                    PastelModels.REDSTONE_TIMER.createWithSuffix(
-                                                                                   block, "_off",
-                                                                                   new TextureMapping().put(
-                                                                                       PastelTextureKeys.LIGHT,
-                                                                                       TextureMapping.getBlockTexture(
-                                                                                           REDSTONE_TORCH, "_off")
-                                                                                   ), ctx.modelOutput
-                                                                               );
+                                                                                   PastelModels.REDSTONE_TIMER.createWithSuffix(
+                                                                                       block, "_off",
+                                                                                       new TextureMapping().put(
+                                                                                           PastelTextureKeys.LIGHT,
+                                                                                           TextureMapping.getBlockTexture(
+                                                                                               REDSTONE_TORCH, "_off")
+                                                                                       ), ctx.modelOutput
+                                                                                   );
                                                                                for (Direction direction :
                                                                                    Direction.Plane.HORIZONTAL) {
                                                                                    VariantProperties.Rotation rotation
                                                                                        =
-                                                                                        PastelModelHelper.getSouthDefaultRotation(
-                                                                                       direction);
+                                                                                       PastelModelHelper.getSouthDefaultRotation(
+                                                                                           direction);
                                                                                    multipart.with(
                                                                                        Condition
                                                                                            .condition()
@@ -5281,12 +5283,12 @@ public class PastelBlocks {
                                                                                         = MultiPartGenerator.multiPart(
                                                                                         block);
                                                                                     for (Direction direction :
-                                                                                     Direction.Plane.HORIZONTAL) {
+                                                                                        Direction.Plane.HORIZONTAL) {
                                                                                         VariantProperties.Rotation
                                                                                             rotation
                                                                                             =
                                                                                             PastelModelHelper.getSouthDefaultRotation(
-                                                                                            direction);
+                                                                                                direction);
                                                                                         multipart.with(
                                                                                             Condition
                                                                                                 .condition()
@@ -5364,50 +5366,54 @@ public class PastelBlocks {
                                                                                      ResourceLocation senderOn
                                                                                          =
                                                                                          PastelModels.REDSTONE_TRANSCEIVER_SENDER.createWithSuffix(
-                                                                                         block, "_sender",
-                                                                                         new TextureMapping().put(
-                                                                                             PastelTextureKeys.LIGHT,
-                                                                                             TextureMapping.getBlockTexture(
-                                                                                                 REDSTONE_TORCH)
-                                                                                         ), ctx.modelOutput
-                                                                                     );
+                                                                                             block, "_sender",
+                                                                                             new TextureMapping().put(
+                                                                                                 PastelTextureKeys.LIGHT,
+                                                                                                 TextureMapping.getBlockTexture(
+                                                                                                     REDSTONE_TORCH)
+                                                                                             ), ctx.modelOutput
+                                                                                         );
                                                                                      ResourceLocation senderOff
                                                                                          =
                                                                                          PastelModels.REDSTONE_TRANSCEIVER_SENDER.createWithSuffix(
-                                                                                         block, "_sender_off",
-                                                                                         new TextureMapping().put(
-                                                                                             PastelTextureKeys.LIGHT,
-                                                                                             TextureMapping.getBlockTexture(
-                                                                                                 REDSTONE_TORCH, "_off")
-                                                                                         ), ctx.modelOutput
-                                                                                     );
+                                                                                             block, "_sender_off",
+                                                                                             new TextureMapping().put(
+                                                                                                 PastelTextureKeys.LIGHT,
+                                                                                                 TextureMapping.getBlockTexture(
+                                                                                                     REDSTONE_TORCH,
+                                                                                                     "_off"
+                                                                                                 )
+                                                                                             ), ctx.modelOutput
+                                                                                         );
                                                                                      ResourceLocation receiverOn
                                                                                          =
-                                                                                          PastelModels.REDSTONE_TRANSCEIVER_RECEIVER.createWithSuffix(
-                                                                                         block, "_receiver",
-                                                                                         new TextureMapping().put(
-                                                                                             PastelTextureKeys.LIGHT,
-                                                                                             TextureMapping.getBlockTexture(
-                                                                                                 REDSTONE_TORCH)
-                                                                                         ), ctx.modelOutput
-                                                                                     );
+                                                                                         PastelModels.REDSTONE_TRANSCEIVER_RECEIVER.createWithSuffix(
+                                                                                             block, "_receiver",
+                                                                                             new TextureMapping().put(
+                                                                                                 PastelTextureKeys.LIGHT,
+                                                                                                 TextureMapping.getBlockTexture(
+                                                                                                     REDSTONE_TORCH)
+                                                                                             ), ctx.modelOutput
+                                                                                         );
                                                                                      ResourceLocation receiverOff
                                                                                          =
-                                                                                          PastelModels.REDSTONE_TRANSCEIVER_RECEIVER.createWithSuffix(
-                                                                                         block, "_receiver_off",
-                                                                                         new TextureMapping().put(
-                                                                                             PastelTextureKeys.LIGHT,
-                                                                                             TextureMapping.getBlockTexture(
-                                                                                                 REDSTONE_TORCH, "_off")
-                                                                                         ), ctx.modelOutput
-                                                                                     );
+                                                                                         PastelModels.REDSTONE_TRANSCEIVER_RECEIVER.createWithSuffix(
+                                                                                             block, "_receiver_off",
+                                                                                             new TextureMapping().put(
+                                                                                                 PastelTextureKeys.LIGHT,
+                                                                                                 TextureMapping.getBlockTexture(
+                                                                                                     REDSTONE_TORCH,
+                                                                                                     "_off"
+                                                                                                 )
+                                                                                             ), ctx.modelOutput
+                                                                                         );
                                                                                      for (Direction direction :
                                                                                          Direction.Plane.HORIZONTAL) {
                                                                                          VariantProperties.Rotation
                                                                                              rotation
                                                                                              =
                                                                                              PastelModelHelper.getSouthDefaultRotation(
-                                                                                             direction);
+                                                                                                 direction);
                                                                                          multipart.with(
                                                                                              Condition
                                                                                                  .condition()
@@ -5498,19 +5504,19 @@ public class PastelBlocks {
                                                                                          );
                                                                                      }
                                                                                      for (DyeColor color :
-                                                                                      DyeColor.values()) {
+                                                                                         DyeColor.values()) {
                                                                                          ResourceLocation channel
                                                                                              =
                                                                                              PastelModels.REDSTONE_TRANSCEIVER_CHANNEL.createWithSuffix(
-                                                                                             block, "_channel_" +
-                                                                                                    color.getSerializedName(),
-                                                                                             PastelTextureMaps.all(
-                                                                                                 PastelCommon.locate(
-                                                                                                     "block/" +
-                                                                                                     color.getSerializedName() +
-                                                                                                     "_block")),
-                                                                                             ctx.modelOutput
-                                                                                         );
+                                                                                                 block, "_channel_" +
+                                                                                                        color.getSerializedName(),
+                                                                                                 PastelTextureMaps.all(
+                                                                                                     PastelCommon.locate(
+                                                                                                         "block/" +
+                                                                                                         color.getSerializedName() +
+                                                                                                         "_block")),
+                                                                                                 ctx.modelOutput
+                                                                                             );
                                                                                          multipart.with(
                                                                                              Condition
                                                                                                  .condition()
@@ -7014,7 +7020,7 @@ public class PastelBlocks {
 
     public static final DeferredBlock<Block> DOWNSTONE = register(
         simple(blockWithItem("downstone", () -> new Block(preservationBlock()), InkColors.BLUE)));
-        // "raw" preservation stone, used in the Deeper Down bottom in place of bedrock
+    // "raw" preservation stone, used in the Deeper Down bottom in place of bedrock
 
     public static final DeferredBlock<Block> PRESERVATION_STONE = register(
         blockWithItem("preservation_stone", () -> new Block(preservationBlock()), InkColors.BLUE).withBlockModel(

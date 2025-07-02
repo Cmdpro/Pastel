@@ -259,7 +259,7 @@ public class PastelEmiPlugin implements EmiPlugin {
             // with different states
             registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(
                 PastelEmiRecipeCategories.FREEZING, id, in, out,
-                                                                   PastelAdvancements.UNLOCK_IDOLS
+                PastelAdvancements.UNLOCK_IDOLS
             ));
         });
         FreezingIdolBlock.FREEZING_MAP.forEach((key, value) -> {
@@ -275,7 +275,7 @@ public class PastelEmiPlugin implements EmiPlugin {
             ResourceLocation id = syntheticId("freezing", key);
             registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(
                 PastelEmiRecipeCategories.FREEZING, id, in, out,
-                                                                   PastelAdvancements.UNLOCK_IDOLS
+                PastelAdvancements.UNLOCK_IDOLS
             ));
         });
         FirestarterIdolBlock.BURNING_MAP.forEach((key, value) -> {
@@ -291,7 +291,7 @@ public class PastelEmiPlugin implements EmiPlugin {
             ResourceLocation id = syntheticId("heating", key);
             registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(
                 PastelEmiRecipeCategories.HEATING, id, in, out,
-                                                                   PastelAdvancements.UNLOCK_IDOLS
+                PastelAdvancements.UNLOCK_IDOLS
             ));
         });
         NaturesStaffConversionDataLoader.CONVERSIONS.forEach((key, value) -> {
@@ -303,7 +303,7 @@ public class PastelEmiPlugin implements EmiPlugin {
             ResourceLocation id = syntheticId("natures_staff", key);
             registry.addRecipe(new BlockToBlockWithChanceEmiRecipe(
                 PastelEmiRecipeCategories.NATURES_STAFF, id, in, out,
-                                                                   PastelAdvancements.UNLOCK_NATURES_STAFF
+                PastelAdvancements.UNLOCK_NATURES_STAFF
             ));
         });
 

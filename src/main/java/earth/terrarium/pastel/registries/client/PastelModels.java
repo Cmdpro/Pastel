@@ -146,7 +146,7 @@ public class PastelModels {
         return new ModelTemplate(
             Optional.of(PastelCommon.locate(
                 "templates/base_trans_lantern" + (diagonal ? "_diagonal" : "") + (tall ? "_tall" : "_small"))),
-                                 Optional.empty(), GLASS, CASE
+            Optional.empty(), GLASS, CASE
         );
     }
 

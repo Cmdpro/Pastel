@@ -58,9 +58,10 @@ public class EtherealPlatformBlock extends TransparentBlock {
                 BlockPos offsetPos = pos.relative(direction);
                 BlockState directionState = world.getBlockState(offsetPos);
                 if (directionState.getBlock() instanceof EtherealPlatformBlock) {
-                    world.setBlock(offsetPos, directionState
-                        .setValue(AGE, MAX_AGE - 1)
-                        .setValue(EXTEND, true), Block.UPDATE_CLIENTS
+                    world.setBlock(
+                        offsetPos, directionState
+                            .setValue(AGE, MAX_AGE - 1)
+                            .setValue(EXTEND, true), Block.UPDATE_CLIENTS
                     );
                     world.scheduleTick(offsetPos, this, 2);
                 }
@@ -78,9 +79,10 @@ public class EtherealPlatformBlock extends TransparentBlock {
                 BlockPos offsetPos = pos.relative(direction);
                 BlockState directionState = world.getBlockState(offsetPos);
                 if (directionState.getBlock() instanceof EtherealPlatformBlock && age > directionState.getValue(AGE)) {
-                    world.setBlock(offsetPos, directionState
-                        .setValue(AGE, age - 1)
-                        .setValue(EXTEND, true), Block.UPDATE_CLIENTS
+                    world.setBlock(
+                        offsetPos, directionState
+                            .setValue(AGE, age - 1)
+                            .setValue(EXTEND, true), Block.UPDATE_CLIENTS
                     );
                     world.scheduleTick(offsetPos, this, 2);
                 }
@@ -105,9 +107,10 @@ public class EtherealPlatformBlock extends TransparentBlock {
     private boolean increaseAge(BlockState state, Level world, BlockPos pos) {
         int i = state.getValue(AGE);
         if (i > 0) {
-            world.setBlock(pos, state
-                .setValue(AGE, i - 1)
-                .setValue(EXTEND, false), Block.UPDATE_CLIENTS
+            world.setBlock(
+                pos, state
+                    .setValue(AGE, i - 1)
+                    .setValue(EXTEND, false), Block.UPDATE_CLIENTS
             );
             return false;
         } else {

@@ -87,19 +87,21 @@ public class ScrollableTextWidget extends WidgetWithBounds {
         for (FormattedCharSequence text : texts) {
             if (text != null && currentY + font.lineHeight >= innerBounds.y && currentY <= innerBounds.getMaxY()) {
 
-                drawContext.drawString(font, text, innerBounds.x + 2, currentY + 2, REIRuntime
-                                                                                        .getInstance()
-                                                                                        .isDarkThemeEnabled()
-                                                                                    ? 0xFFBBBBBB : 0xFF090909, false
+                drawContext.drawString(
+                    font, text, innerBounds.x + 2, currentY + 2, REIRuntime
+                                                                     .getInstance()
+                                                                     .isDarkThemeEnabled()
+                                                                 ? 0xFFBBBBBB : 0xFF090909, false
                 );
             }
             currentY += text == null ? 4 : font.lineHeight;
         }
         ScissorsHandler.INSTANCE.removeLastScissor();
         ScissorsHandler.INSTANCE.scissor(scrolling.getBounds());
-        scrolling.renderScrollBar(drawContext, 0xff000000, 1, REIRuntime
-                                                                  .getInstance()
-                                                                  .isDarkThemeEnabled() ? 0.8f : 1f
+        scrolling.renderScrollBar(
+            drawContext, 0xff000000, 1, REIRuntime
+                                            .getInstance()
+                                            .isDarkThemeEnabled() ? 0.8f : 1f
         );
         ScissorsHandler.INSTANCE.removeLastScissor();
     }

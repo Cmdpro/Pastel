@@ -23,9 +23,10 @@ public class FusionShrineDisplay extends PastelDisplay {
     protected final Optional<Component> description;
 
     public FusionShrineDisplay(@NotNull RecipeHolder<FusionShrineRecipe> recipe) {
-        super(recipe, buildIngredients(recipe.value()), recipe
-            .value()
-            .getResultItem(BasicDisplay.registryAccess())
+        super(
+            recipe, buildIngredients(recipe.value()), recipe
+                .value()
+                .getResultItem(BasicDisplay.registryAccess())
         );
         this.experience = recipe
             .value()

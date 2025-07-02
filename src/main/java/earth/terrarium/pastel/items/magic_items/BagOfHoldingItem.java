@@ -26,7 +26,7 @@ public class BagOfHoldingItem extends Item {
             user.openMenu(new SimpleMenuProvider(
                 (syncId, inventory, playerx) -> new BagOfHoldingScreenHandler(
                     syncId, playerx.getInventory(),
-                                                                              playerx.getEnderChestInventory()
+                    playerx.getEnderChestInventory()
                 ), Component.translatable("container.enderchest")
             ));
 

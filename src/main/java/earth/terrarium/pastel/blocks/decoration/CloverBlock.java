@@ -52,9 +52,10 @@ public class CloverBlock extends BushBlock implements BonemealableBlock {
             .registryAccess()
             .registryOrThrow(Registries.CONFIGURED_FEATURE)
             .get(PastelConfiguredFeatures.CLOVER_PATCH)
-            .place(world, world
-                .getChunkSource()
-                .getGenerator(), random, pos
+            .place(
+                world, world
+                    .getChunkSource()
+                    .getGenerator(), random, pos
             );
     }
 

@@ -111,9 +111,10 @@ public class TallDragonjagBlock extends DoublePlantBlock
             .registryAccess()
             .registryOrThrow(Registries.CONFIGURED_FEATURE)
             .get(PastelConfiguredFeatures.DRAGONJAGS.get(variant))
-            .place(world, world
-                .getChunkSource()
-                .getGenerator(), random, pos
+            .place(
+                world, world
+                    .getChunkSource()
+                    .getGenerator(), random, pos
             );
 
         if (success) {

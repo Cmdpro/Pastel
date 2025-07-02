@@ -21,7 +21,7 @@ public class PotionPendantItem extends PastelTrinketItem implements InkPoweredPo
 
     private final static int TRIGGER_EVERY_X_TICKS = 300;
     private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 220;
-        // always keeps the effect active & prevents the 10 seconds of screen flashing when night vision runs out
+    // always keeps the effect active & prevents the 10 seconds of screen flashing when night vision runs out
 
     private final int maxEffectCount;
     private final int maxAmplifier;
@@ -87,7 +87,7 @@ public class PotionPendantItem extends PastelTrinketItem implements InkPoweredPo
                 MobEffectInstance effect = inkPoweredEffect.getStatusEffectInstance();
                 player.addEffect(new MobEffectInstance(
                     effect.getEffect(), EFFECT_DURATION, effect.getAmplifier(),
-                                                       effect.isAmbient(), effect.isVisible(), true
+                    effect.isAmbient(), effect.isVisible(), true
                 ));
             }
         }

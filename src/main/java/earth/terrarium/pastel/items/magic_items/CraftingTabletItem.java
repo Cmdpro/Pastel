@@ -98,10 +98,10 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
         return new SimpleMenuProvider(
             (syncId, inventory, player) -> new CraftingTabletScreenHandler(
                 syncId, inventory,
-                                                                           ContainerLevelAccess.create(
-                                                                               world,
-                                                                               serverPlayerEntity.blockPosition()
-                                                                           ), itemStack
+                ContainerLevelAccess.create(
+                    world,
+                    serverPlayerEntity.blockPosition()
+                ), itemStack
             ), TITLE
         );
     }

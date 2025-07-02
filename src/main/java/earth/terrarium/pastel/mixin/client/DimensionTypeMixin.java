@@ -18,10 +18,11 @@ public abstract class DimensionTypeMixin {
         if (!Minecraft
             .getInstance()
             .isPaused() && PastelClient.skyLerper.isActive((DimensionType) (Object) this)) {
-            return PastelClient.skyLerper.tickLerp(time, Minecraft
-                .getInstance()
-                .getTimer()
-                .getGameTimeDeltaPartialTick(false)
+            return PastelClient.skyLerper.tickLerp(
+                time, Minecraft
+                    .getInstance()
+                    .getTimer()
+                    .getGameTimeDeltaPartialTick(false)
             );
         } else {
             return time;

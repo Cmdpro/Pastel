@@ -22,12 +22,13 @@ public class CinderhearthDisplay extends PastelDisplay {
     protected final List<Tuple<ItemStack, Float>> outputsWithChance;
 
     public CinderhearthDisplay(@NotNull RecipeHolder<CinderhearthRecipe> recipe) {
-        super(recipe, REIHelper.toEntryIngredients(recipe
-                                                       .value()
-                                                       .getIngredientStacks()), List.of(EntryIngredients.ofItemStacks(
-            recipe
-                .value()
-                .getPossibleOutputs()))
+        super(
+            recipe, REIHelper.toEntryIngredients(recipe
+                                                     .value()
+                                                     .getIngredientStacks()), List.of(EntryIngredients.ofItemStacks(
+                recipe
+                    .value()
+                    .getPossibleOutputs()))
         );
         this.outputsWithChance = recipe
             .value()

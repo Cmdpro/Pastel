@@ -49,7 +49,7 @@ public class BlockFlooderBlock extends BaseEntityBlock {
         put(BlockTags.SAND, Blocks.SAND);
     }};
     public static final List<TagKey<Block>> exchangeBlockTags = ImmutableList.copyOf(exchangeableBlocks.keySet());
-        // for quick lookup
+    // for quick lookup
     public final short MAX_DISTANCE = 10;
     public final BlockState DEFAULT_BLOCK_STATE = Blocks.COBBLESTONE.defaultBlockState();
 

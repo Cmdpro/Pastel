@@ -38,9 +38,10 @@ public abstract class RandomChanceWithEnchantedBonusLootConditionMixin {
                     float enchantedChanceValue = this.enchantedChance.calculate(level);
                     original = context
                                    .getRandom()
-                                   .nextFloat() < CloversFavorHelper.rollChance(enchantedChanceValue,
-                                                                                context.getParamOrNull(
-                                                                                    LootContextParams.ATTACKING_ENTITY)
+                                   .nextFloat() < CloversFavorHelper.rollChance(
+                        enchantedChanceValue,
+                        context.getParamOrNull(
+                            LootContextParams.ATTACKING_ENTITY)
                     );
                 }
             }

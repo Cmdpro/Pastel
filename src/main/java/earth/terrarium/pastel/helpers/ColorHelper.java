@@ -20,8 +20,9 @@ import java.util.regex.Pattern;
 
 public class ColorHelper {
 
-    public static final Codec<Integer> CODEC = Codec.withAlternative(Codec.INT, Codec.STRING.comapFlatMap(
-        CodecHelper.throwable(ColorHelper::fromString), ColorHelper::toString)
+    public static final Codec<Integer> CODEC = Codec.withAlternative(
+        Codec.INT, Codec.STRING.comapFlatMap(
+            CodecHelper.throwable(ColorHelper::fromString), ColorHelper::toString)
     );
 
     /**

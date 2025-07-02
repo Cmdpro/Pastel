@@ -74,7 +74,7 @@ public abstract class PastelFishingBobberEntity extends Projectile {
         PastelFishingBobberEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> ABLAZE = SynchedEntityData.defineId(
         PastelFishingBobberEntity.class, EntityDataSerializers.BOOLEAN);
-        // needs to be synced to the client, so it can render on fire
+    // needs to be synced to the client, so it can render on fire
     private int removalTimer;
     private int hookCountdown;
     private int waitCountdown;
