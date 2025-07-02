@@ -184,17 +184,16 @@ cloche {
     }
 }
 
-
 resourcefulGradle {
-    templates {
-        register("embed") {
+	templates {
+		register("embed") {
 
-            source.set(file("templates/embed.json.template"))
-            injectedValues.set(mapOf(
-                "minecraft" to cloche.minecraftVersion,
-                "version" to System.getenv("VERSION"),
-                "changelog" to StringEscapeUtils.escapeJava(System.getenv("CHANGELOG")),
-            ))
-        }
-    }
+			source.set(file("templates/embed.json.template"))
+			injectedValues.set(mapOf(
+				"minecraft" to cloche.minecraftVersion,
+				"version" to System.getenv("VERSION"),
+				"changelog" to StringEscapeUtils.escapeJava(System.getenv("CHANGELOG")),
+			))
+		}
+	}
 }
