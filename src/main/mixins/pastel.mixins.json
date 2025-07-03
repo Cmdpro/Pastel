@@ -11,8 +11,6 @@
     "AnimalEntityMixin",
     "AnvilBlockMixin",
     "ApplyBonusLootFunctionMixin",
-    "ReloadableServerRegistriesMixin",
-    "BlockMixin",
     "BowItemMixin",
     "BrainMixin",
     "BrewingRecipeRegistryMixin",

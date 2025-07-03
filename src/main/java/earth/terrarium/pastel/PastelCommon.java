@@ -1,6 +1,5 @@
 package earth.terrarium.pastel;
 
-import de.dafuqs.revelationary.Revelationary;
 import de.dafuqs.revelationary.RevelationaryNetworking;
 import earth.terrarium.pastel.api.color.ColorRegistry;
 import earth.terrarium.pastel.api.energy.color.InkColorMixes;
@@ -18,6 +17,7 @@ import earth.terrarium.pastel.entity.PastelEntityTypes;
 import earth.terrarium.pastel.entity.PastelTrackedDataHandlerRegistry;
 import earth.terrarium.pastel.events.PastelDamageEvents;
 import earth.terrarium.pastel.events.PastelEffectEvents;
+import earth.terrarium.pastel.events.PastelEnchantmentEvents;
 import earth.terrarium.pastel.events.PastelEntityEvents;
 import earth.terrarium.pastel.events.PastelEquipmentEvents;
 import earth.terrarium.pastel.events.PastelMiscEvents;
@@ -28,7 +28,6 @@ import earth.terrarium.pastel.inventories.PastelScreenHandlerTypes;
 import earth.terrarium.pastel.loot.PastelLootContextTypes;
 import earth.terrarium.pastel.loot.PastelLootFunctionTypes;
 import earth.terrarium.pastel.loot.PastelLootModifiers;
-import earth.terrarium.pastel.loot.PastelLootPoolModifiers;
 import earth.terrarium.pastel.networking.PastelC2SPackets;
 import earth.terrarium.pastel.networking.PastelS2CPackets;
 import earth.terrarium.pastel.particle.PastelParticleTypes;
@@ -164,6 +163,7 @@ public class PastelCommon {
 		PastelPastelUpgrades.register(pastelBus);
 		logInfo("Registering Stamp Categories...");
 		PastelStampDataCategories.register(pastelBus);
+		PastelPresentUnpackBehaviors.register();
 
 		// Worldgen
 		logInfo("Registering Features...");
@@ -197,8 +197,6 @@ public class PastelCommon {
 
 		logInfo("Registering Default Item Stack Damage Immunities...");
 		PastelItemDamageImmunities.registerDefaultItemStackImmunities();
-		logInfo("Registering Enchantment Drops...");
-		NeoForge.EVENT_BUS.addListener(PastelLootPoolModifiers::loadLootTable);
 		logInfo("Registering Variant Specific Predicates...");
 		PastelItemSubPredicateTypes.register(pastelBus);
 		PastelEntitySubPredicateTypes.register(pastelBus);
@@ -256,6 +254,7 @@ public class PastelCommon {
 		PastelPlayerEvents.register();
 		PastelEquipmentEvents.register();
 		PastelEffectEvents.register(pastelBus);
+		PastelEnchantmentEvents.register();
 		logInfo("Registering Tree Decorator Types...");
 		PastelTreeDecoratorTypes.register(pastelBus);
 
