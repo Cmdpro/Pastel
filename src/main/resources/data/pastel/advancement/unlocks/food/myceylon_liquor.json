@@ -11,12 +11,6 @@
       "conditions": {
         "advancement_identifier": "pastel:lategame/collect_myceylon"
       }
-    },
-    "confirmed_drinking_age": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "pastel:triggers/confirmed_drinking_age"
-      }
     }
   }
 }

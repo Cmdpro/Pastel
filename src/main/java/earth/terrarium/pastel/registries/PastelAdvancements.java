@@ -1167,9 +1167,6 @@ public class PastelAdvancements {
             public static final ResourceLocation RESONANT_LILY_PAGE1 = PastelCommon.locate(
                 "triggers/hints/resonant_lily_page1");
         }
-
-        public static final ResourceLocation CONFIRMED_DRINKING_AGE = PastelCommon.locate(
-            "triggers/confirmed_drinking_age");
     }
 
     public static class Milestones {

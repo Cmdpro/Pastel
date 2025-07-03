@@ -6,12 +6,6 @@
         "advancement_identifier": "pastel:unlocks/blocks/titration_barrel"
       }
     },
-    "confirmed_drinking_age": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "pastel:triggers/confirmed_drinking_age"
-      }
-    },
     "collected_amaranth_bushel": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

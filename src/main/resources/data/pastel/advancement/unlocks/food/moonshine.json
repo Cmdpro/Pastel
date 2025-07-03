@@ -1,11 +1,5 @@
 {
   "criteria": {
-    "confirmed_drinking_age": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "pastel:triggers/confirmed_drinking_age"
-      }
-    },
     "collected_moonstone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
