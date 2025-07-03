@@ -1,12 +1,20 @@
 package earth.terrarium.pastel.data.lang;
 
+import com.klikli_dev.modonomicon.api.datagen.AbstractModonomiconLanguageProvider;
+import com.klikli_dev.modonomicon.api.datagen.ModonomiconLanguageProvider;
 import earth.terrarium.pastel.PastelCommon;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
-public class PastelLanguageProvider extends LanguageProvider {
+public class PastelLanguageProvider extends LanguageProvider implements ModonomiconLanguageProvider {
 	public PastelLanguageProvider(PackOutput output) {
 		super(output, PastelCommon.MOD_ID, "en_us");
+	}
+	
+	@Override
+	public void accept(String s, String s2) {
+		this.add(s, s2);
 	}
 	
 	@Override

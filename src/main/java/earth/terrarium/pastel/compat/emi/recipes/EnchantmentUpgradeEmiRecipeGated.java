@@ -90,7 +90,7 @@ public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<Gat
 	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
-		var overEnchant = AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, PastelAdvancements.OVERENCHANTING);
+		var overEnchant = AdvancementHelper.hasAdvancement(Minecraft.getInstance().player, PastelAdvancements.Milestones.UNLOCK_OVERENCHANTING_WITH_ENCHANTER);
 		
 		// Reset the indexer
 		indexer = 1;
@@ -109,10 +109,10 @@ public class EnchantmentUpgradeEmiRecipeGated extends GatedSpectrumEmiRecipe<Gat
 		
 		var cap = overEnchant ? levelCap : maxNormal;
 		// Indexing buttons
-		var minus = new SaneButtonWidget(84, 18, 8, 8, 64, 16, BACKGROUND_TEXTURE,() -> false, (mX, mY, b) -> {
+		var minus = new SaneButtonWidget(84, 18, 8, 8, 64, 16, BACKGROUND_TEXTURE, () -> false, (mX, mY, b) -> {
 			indexer = Math.clamp(indexer - 1, 1, cap - 1);
 		}).tooltipText(List.of(Component.translatable(EnchanterBlockEntity.CYCLING)));
-		var plus = new SaneButtonWidget(94, 18, 8, 8, 72, 16, BACKGROUND_TEXTURE,() -> false, (mX, mY, b) -> {
+		var plus = new SaneButtonWidget(94, 18, 8, 8, 72, 16, BACKGROUND_TEXTURE, () -> false, (mX, mY, b) -> {
 			indexer = Math.clamp(indexer + 1, 1, cap - 1);
 		}).tooltipText(List.of(Component.translatable(EnchanterBlockEntity.CYCLING)));
 		
