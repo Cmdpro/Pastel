@@ -4,6 +4,7 @@ import earth.terrarium.pastel.api.item.*;
 import earth.terrarium.pastel.attachments.*;
 import earth.terrarium.pastel.attachments.data.*;
 import earth.terrarium.pastel.attachments.data.azure_dike.*;
+import earth.terrarium.pastel.capabilities.PastelCapabilities;
 import earth.terrarium.pastel.helpers.*;
 import earth.terrarium.pastel.helpers.enchantments.*;
 import earth.terrarium.pastel.items.tools.*;
@@ -35,6 +36,21 @@ public class PastelPlayerEvents {
         NeoForge.EVENT_BUS.addListener(EventPriority.LOWEST, PastelPlayerEvents::removeHardcoreDeath);
     }
 
+    private static void absorbExperience(PlayerXpEvent.PickupXp event) {
+        var player = event.getEntity();
+        var orb = event.getOrb();
+
+        for (ItemStack stack : player.getHandSlots()) {
+            var storage = stack.getCapability(PastelCapabilities.Misc.XP, player.registryAccess());
+
+            if (storage == null)
+                continue;
+
+            storage.insert(orb.getValue(), false);
+            orb.discard();
+        }
+    }
+
     private static void removeHardcoreDeath(PlayerEvent.PlayerChangeGameModeEvent event) {
         var curMode = event.getCurrentGameMode();
         var newMode = event.getNewGameMode();
@@ -61,7 +77,7 @@ public class PastelPlayerEvents {
 
     private static void applyImprovedCritical(CriticalHitEvent event) {
         var player = event.getEntity();
-        var icl = PastelEnchantmentHelper.getLevel(player.level().registryAccess(), PastelEnchantments.IMPROVED_CRITICAL, event.getEntity().getMainHandItem());
+        var icl = Ench.getLevel(player.level().registryAccess(), PastelEnchantments.IMPROVED_CRITICAL, event.getEntity().getMainHandItem());
         event.setDamageMultiplier(event.getDamageMultiplier() + ImprovedCriticalHelper.getAddtionalCritDamageMultiplier(icl));
     }
 

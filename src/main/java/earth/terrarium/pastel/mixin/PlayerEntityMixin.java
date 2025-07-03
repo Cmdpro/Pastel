@@ -3,14 +3,13 @@ package earth.terrarium.pastel.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import earth.terrarium.pastel.api.entity.PlayerEntityAccessor;
-import earth.terrarium.pastel.api.item.ExperienceStorageItem;
+import earth.terrarium.pastel.capabilities.ExperienceHandler;
 import earth.terrarium.pastel.attachments.data.MiscPlayerData;
 import earth.terrarium.pastel.entity.entity.PastelFishingBobberEntity;
-import earth.terrarium.pastel.helpers.PastelEnchantmentHelper;
+import earth.terrarium.pastel.helpers.Ench;
 import earth.terrarium.pastel.items.tools.LightGreatswordItem;
 import earth.terrarium.pastel.items.trinkets.PastelTrinketItem;
 import earth.terrarium.pastel.progression.PastelAdvancementCriteria;
-import earth.terrarium.pastel.registries.PastelDamageTypeTags;
 import earth.terrarium.pastel.registries.PastelItems;
 import earth.terrarium.pastel.registries.PastelSoundEvents;
 import earth.terrarium.pastel.registries.PastelMobEffects;
@@ -97,7 +96,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 	
 	@Unique
 	protected int getChanneling(ItemStack stack) {
-		return PastelEnchantmentHelper.getLevel(level().registryAccess(), Enchantments.CHANNELING, stack);
+		return Ench.getLevel(level().registryAccess(), Enchantments.CHANNELING, stack);
 	}
 	
 	@Inject(at = @At("TAIL"), method = "jumpFromGround")
@@ -106,16 +105,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		if ((Object) this instanceof ServerPlayer serverPlayerEntity) {
 			PastelAdvancementCriteria.TAKE_OFF_BELT_JUMP.trigger(serverPlayerEntity);
 		}
-	}
-	
-	@ModifyVariable(method = "hurtArmor", at = @At("HEAD"), ordinal = 0, argsOnly = true)
-	private float damageArmor(float amount, DamageSource source) {
-		if (source.is(PastelDamageTypeTags.DOES_NOT_DAMAGE_ARMOR)) {
-			return 0;
-		} else if (source.is(PastelDamageTypeTags.INCREASED_ARMOR_DAMAGE)) {
-			return amount * 10;
-		}
-		return amount;
 	}
 	
 	@Override
@@ -139,28 +128,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 		if (player.hasEffect(PastelMobEffects.SCARRED)) {
 			cir.setReturnValue(false);
 		}
-	}
-	
-	// If the player holds an ExperienceStorageItem in their hands
-	// experience is tried to get put in there first
-	@ModifyVariable(at = @At("HEAD"), method = "giveExperiencePoints", argsOnly = true)
-	public int addExperience(int experience) {
-		if (experience < 0) { // draining XP, like Botanias Rosa Arcana
-			return experience;
-		}
-		
-		// if the player has a ExperienceStorageItem in hand add the XP to that
-		Player player = (Player) (Object) this;
-		for (ItemStack stack : getHandSlots()) {
-			if (!player.isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
-				experience = ExperienceStorageItem.addStoredExperience(level().registryAccess(), stack, experience);
-				player.takeXpDelay = 0;
-				if (experience == 0) {
-					break;
-				}
-			}
-		}
-		return experience;
 	}
 	
 	@Inject(method = "stopSleepInBed", at = @At(value = "HEAD"))

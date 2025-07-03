@@ -16,6 +16,7 @@ import earth.terrarium.pastel.data_loaders.NaturesStaffConversionDataLoader;
 import earth.terrarium.pastel.entity.PastelEntitySubPredicateTypes;
 import earth.terrarium.pastel.entity.PastelEntityTypes;
 import earth.terrarium.pastel.entity.PastelTrackedDataHandlerRegistry;
+import earth.terrarium.pastel.events.PastelDamageEvents;
 import earth.terrarium.pastel.events.PastelEffectEvents;
 import earth.terrarium.pastel.events.PastelEntityEvents;
 import earth.terrarium.pastel.events.PastelEquipmentEvents;
@@ -26,6 +27,7 @@ import earth.terrarium.pastel.events.game.PastelPositionSources;
 import earth.terrarium.pastel.inventories.PastelScreenHandlerTypes;
 import earth.terrarium.pastel.loot.PastelLootContextTypes;
 import earth.terrarium.pastel.loot.PastelLootFunctionTypes;
+import earth.terrarium.pastel.loot.PastelLootModifiers;
 import earth.terrarium.pastel.loot.PastelLootPoolModifiers;
 import earth.terrarium.pastel.networking.PastelC2SPackets;
 import earth.terrarium.pastel.networking.PastelS2CPackets;
@@ -106,8 +108,6 @@ public class PastelCommon {
 	}
 
 	public PastelCommon(IEventBus pastelBus, ModContainer container) {
-		Revelationary.onInitialize(pastelBus);
-
 		logInfo("Starting Common Startup");
 
 		// Register internals
@@ -186,6 +186,7 @@ public class PastelCommon {
 		logInfo("Registering Loot Conditions & Functions...");
 		PastelLootContextTypes.register();
 		PastelLootFunctionTypes.register(pastelBus);
+		PastelLootModifiers.register(pastelBus);
 
 		logInfo("Setting up server side Mod Compat...");
 		PastelIntegrationPacks.register(pastelBus);
@@ -251,6 +252,7 @@ public class PastelCommon {
 		logInfo("Registering Event Listeners...");
 		PastelMiscEvents.register();
 		PastelEntityEvents.register();
+		PastelDamageEvents.register();
 		PastelPlayerEvents.register();
 		PastelEquipmentEvents.register();
 		PastelEffectEvents.register(pastelBus);

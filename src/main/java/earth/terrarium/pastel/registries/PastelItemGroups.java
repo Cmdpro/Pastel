@@ -2,14 +2,13 @@ package earth.terrarium.pastel.registries;
 
 import earth.terrarium.pastel.*;
 import earth.terrarium.pastel.api.energy.color.*;
-import earth.terrarium.pastel.api.item.ExperienceStorageItem;
 import earth.terrarium.pastel.api.item.Preenchanted;
 import earth.terrarium.pastel.blocks.mob_head.*;
+import earth.terrarium.pastel.capabilities.PastelCapabilities;
 import earth.terrarium.pastel.compat.PastelIntegrationPacks;
 import earth.terrarium.pastel.compat.ae2.AE2Compat;
 import earth.terrarium.pastel.compat.create.CreateCompat;
-import earth.terrarium.pastel.compat.gobber.GobberCompat;
-import earth.terrarium.pastel.helpers.PastelEnchantmentHelper;
+import earth.terrarium.pastel.helpers.Ench;
 import earth.terrarium.pastel.recipe.titration_barrel.ITitrationBarrelRecipe;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.*;
@@ -291,12 +290,12 @@ public class PastelItemGroups {
 				entries.accept(PastelItems.GLOW_VISION_GOGGLES.get());
 				entries.accept(PastelItems.JEOPARDANT.get());
 				entries.accept(PastelItems.SEVEN_LEAGUE_BOOTS.get());
-				entries.accept(PastelEnchantmentHelper.getEnchantedStack(lookup, PastelItems.SEVEN_LEAGUE_BOOTS.get(), Map.of(Enchantments.POWER, 5)));
+				entries.accept(Ench.getEnchantedStack(lookup, PastelItems.SEVEN_LEAGUE_BOOTS.get(), Map.of(Enchantments.POWER, 5)));
 				entries.accept(PastelItems.COTTON_CLOUD_BOOTS.get());
 				entries.accept(PastelItems.RADIANCE_PIN.get());
 				entries.accept(PastelItems.TOTEM_PENDANT.get());
 				entries.accept(PastelItems.TAKE_OFF_BELT.get());
-				entries.accept(PastelEnchantmentHelper.getEnchantedStack(lookup, PastelItems.TAKE_OFF_BELT.get(), Map.of(Enchantments.POWER, 5, Enchantments.FEATHER_FALLING, 4)));
+				entries.accept(Ench.getEnchantedStack(lookup, PastelItems.TAKE_OFF_BELT.get(), Map.of(Enchantments.POWER, 5, Enchantments.FEATHER_FALLING, 4)));
 				entries.accept(PastelItems.AZURE_DIKE_BELT.get());
 				entries.accept(PastelItems.AZURE_DIKE_RING.get());
 				entries.accept(PastelItems.SHIELDGRASP_AMULET.get());
@@ -314,7 +313,7 @@ public class PastelItemGroups {
 				entries.accept(PastelItems.LAURELS_OF_SERENITY.get());
 				entries.accept(PastelItems.LAURELS_OF_SERENITY.get().getFullStack());
 				entries.accept(PastelItems.GLEAMING_PIN.get());
-				entries.accept(PastelEnchantmentHelper.getEnchantedStack(lookup, PastelItems.GLEAMING_PIN.get(), Map.of(PastelEnchantments.SNIPING, 2)));
+				entries.accept(Ench.getEnchantedStack(lookup, PastelItems.GLEAMING_PIN.get(), Map.of(PastelEnchantments.SNIPING, 2)));
 				entries.accept(PastelItems.LESSER_POTION_PENDANT.get());
 				entries.accept(PastelItems.GREATER_POTION_PENDANT.get());
 				entries.accept(PastelItems.ASHEN_CIRCLET.get());
@@ -331,17 +330,19 @@ public class PastelItemGroups {
 				// OTHER
 				entries.accept(PastelItems.CRAFTING_TABLET.get());
 				entries.accept(PastelBlocks.BOTTOMLESS_BUNDLE.get());
-				entries.accept(PastelEnchantmentHelper.getEnchantedStack(lookup, PastelBlocks.BOTTOMLESS_BUNDLE.get().asItem(), Map.of(Enchantments.POWER, 5, PastelEnchantments.VOIDING, 1)));
+				entries.accept(Ench.getEnchantedStack(lookup, PastelBlocks.BOTTOMLESS_BUNDLE.get().asItem(), Map.of(Enchantments.POWER, 5, PastelEnchantments.VOIDING, 1)));
 
 				entries.accept(PastelItems.KNOWLEDGE_GEM.get());
-				ItemStack enchantedKnowledgeGemStack = PastelEnchantmentHelper.getEnchantedStack(lookup, PastelItems.KNOWLEDGE_GEM.get().asItem(), Map.of(Enchantments.EFFICIENCY, 5, Enchantments.QUICK_CHARGE, 3));
+				ItemStack enchantedKnowledgeGemStack = Ench.getEnchantedStack(lookup, PastelItems.KNOWLEDGE_GEM.get().asItem(), Map.of(Enchantments.EFFICIENCY, 5, Enchantments.QUICK_CHARGE, 3));
 				entries.accept(enchantedKnowledgeGemStack.copy());
 
 				ItemStack knowledgeGemStack = PastelItems.KNOWLEDGE_GEM.get().getDefaultInstance();
-				ExperienceStorageItem.addStoredExperience(lookup, knowledgeGemStack, PastelItems.KNOWLEDGE_GEM.get().getMaxStoredExperience(lookup, knowledgeGemStack));
+				var storage = knowledgeGemStack.getCapability(PastelCapabilities.Misc.XP, lookup);
+				storage.insert(storage.getCapacity(), false);
 				entries.accept(knowledgeGemStack);
 
-				ExperienceStorageItem.addStoredExperience(lookup, enchantedKnowledgeGemStack, PastelItems.KNOWLEDGE_GEM.get().getMaxStoredExperience(lookup, enchantedKnowledgeGemStack));
+				var otherStorage = enchantedKnowledgeGemStack.getCapability(PastelCapabilities.Misc.XP, lookup);
+				otherStorage.insert(otherStorage.getCapacity(), false);
 				entries.accept(enchantedKnowledgeGemStack);
 
 				entries.accept(PastelItems.CELESTIAL_POCKETWATCH.get());
@@ -355,16 +356,16 @@ public class PastelItemGroups {
 				entries.accept(PastelItems.BAG_OF_HOLDING.get());
 				entries.accept(PastelItems.RADIANCE_STAFF.get());
 				entries.accept(PastelItems.NATURES_STAFF.get());
-				entries.accept(PastelEnchantmentHelper.getEnchantedStack(lookup, PastelItems.NATURES_STAFF.get(), Map.of(Enchantments.EFFICIENCY, 5)));
+				entries.accept(Ench.getEnchantedStack(lookup, PastelItems.NATURES_STAFF.get(), Map.of(Enchantments.EFFICIENCY, 5)));
 				entries.accept(PastelItems.STAFF_OF_REMEMBRANCE.get());
 				entries.accept(PastelItems.CONSTRUCTORS_STAFF.get());
 				entries.accept(PastelItems.EXCHANGING_STAFF.get());
-				PastelEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, PastelItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.FORTUNE, 3, false, false).ifPresent(entries::accept);
-				PastelEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, PastelItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.SILK_TOUCH, 1, false, false).ifPresent(entries::accept);
-				PastelEnchantmentHelper.addOrUpgradeEnchantmentOpt(lookup, PastelItems.EXCHANGING_STAFF.get().getDefaultInstance(), PastelEnchantments.RESONANCE, 1, false, false).ifPresent(entries::accept);
+				Ench.addOrUpgradeEnchantmentOpt(lookup, PastelItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.FORTUNE, 3, false, false).ifPresent(entries::accept);
+				Ench.addOrUpgradeEnchantmentOpt(lookup, PastelItems.EXCHANGING_STAFF.get().getDefaultInstance(), Enchantments.SILK_TOUCH, 1, false, false).ifPresent(entries::accept);
+				Ench.addOrUpgradeEnchantmentOpt(lookup, PastelItems.EXCHANGING_STAFF.get().getDefaultInstance(), PastelEnchantments.RESONANCE, 1, false, false).ifPresent(entries::accept);
 				entries.accept(PastelItems.BLOCK_FLOODER.get());
 				entries.accept(PastelItems.ENDER_SPLICE.get());
-				entries.accept(PastelEnchantmentHelper.getEnchantedStack(lookup, PastelItems.ENDER_SPLICE.get(), Map.of(PastelEnchantments.RESONANCE, 1, PastelEnchantments.INDESTRUCTIBLE, 1)));
+				entries.accept(Ench.getEnchantedStack(lookup, PastelItems.ENDER_SPLICE.get(), Map.of(PastelEnchantments.RESONANCE, 1, PastelEnchantments.INDESTRUCTIBLE, 1)));
 				entries.accept(PastelItems.PERTURBED_EYE.get());
 				entries.accept(PastelItems.PIPE_BOMB.get());
 				entries.accept(PastelItems.CRESCENT_CLOCK.get());
@@ -1035,17 +1036,9 @@ public class PastelItemGroups {
 				entries.accept(PastelBlocks.PURE_ECHO_BLOCK.get());
 
 				if (PastelIntegrationPacks.isIntegrationPackActive(PastelIntegrationPacks.AE2_ID)) {
-					entries.accept(AE2Compat.PURE_CERTUS_QUARTZ);
-					entries.accept(AE2Compat.SMALL_CERTUS_QUARTZ_BUD);
-					entries.accept(AE2Compat.LARGE_CERTUS_QUARTZ_BUD);
-					entries.accept(AE2Compat.CERTUS_QUARTZ_CLUSTER);
-					entries.accept(AE2Compat.PURE_CERTUS_QUARTZ_BLOCK);
-
-					entries.accept(AE2Compat.PURE_FLUIX);
 					entries.accept(AE2Compat.SMALL_FLUIX_BUD);
 					entries.accept(AE2Compat.LARGE_FLUIX_BUD);
 					entries.accept(AE2Compat.FLUIX_CLUSTER);
-					entries.accept(AE2Compat.PURE_FLUIX_BLOCK);
 				}
 
 				if (PastelIntegrationPacks.isIntegrationPackActive(PastelIntegrationPacks.CREATE_ID)) {
@@ -1054,26 +1047,6 @@ public class PastelItemGroups {
 					entries.accept(CreateCompat.LARGE_ZINC_BUD);
 					entries.accept(CreateCompat.ZINC_CLUSTER);
 					entries.accept(CreateCompat.PURE_ZINC_BLOCK);
-				}
-
-				if (PastelIntegrationPacks.isIntegrationPackActive(PastelIntegrationPacks.GOBBER_ID)) {
-					entries.accept(GobberCompat.PURE_GLOBETTE);
-					entries.accept(GobberCompat.SMALL_GLOBETTE_BUD);
-					entries.accept(GobberCompat.LARGE_GLOBETTE_BUD);
-					entries.accept(GobberCompat.GLOBETTE_CLUSTER);
-					entries.accept(GobberCompat.PURE_GLOBETTE_BLOCK);
-
-					entries.accept(GobberCompat.PURE_GLOBETTE_NETHER);
-					entries.accept(GobberCompat.SMALL_GLOBETTE_NETHER_BUD);
-					entries.accept(GobberCompat.LARGE_GLOBETTE_NETHER_BUD);
-					entries.accept(GobberCompat.GLOBETTE_NETHER_CLUSTER);
-					entries.accept(GobberCompat.PURE_GLOBETTE_NETHER_BLOCK);
-
-					entries.accept(GobberCompat.PURE_GLOBETTE_END);
-					entries.accept(GobberCompat.SMALL_GLOBETTE_END_BUD);
-					entries.accept(GobberCompat.LARGE_GLOBETTE_END_BUD);
-					entries.accept(GobberCompat.GLOBETTE_END_CLUSTER);
-					entries.accept(GobberCompat.PURE_GLOBETTE_END_BLOCK);
 				}
 			})
 			.build();

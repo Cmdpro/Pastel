@@ -105,18 +105,17 @@ public class SpiritInstillerRecipe extends GatedStackPastelRecipe<InstanceRecipe
 	
 	@Override
 	public ItemStack assemble(InstanceRecipeInput<SpiritInstillerBlockEntity> recipeInput, HolderLookup.Provider drm) {
-		ItemStack resultStack = ItemStack.EMPTY;
 		SpiritInstillerBlockEntity spiritInstillerBlockEntity = recipeInput.getInstance();
 		Upgradeable.UpgradeHolder upgradeHolder = spiritInstillerBlockEntity.getUpgradeHolder();
 		Level world = spiritInstillerBlockEntity.getLevel();
 		if (world == null) return ItemStack.EMPTY;
 		BlockPos pos = spiritInstillerBlockEntity.getBlockPos();
 		
-		resultStack = getResultItem(drm).copy();
+		ItemStack resultStack = getResultItem(drm).copy();
 		
 		// Yield upgrade
 		if (!areYieldAndEfficiencyUpgradesDisabled() && upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD) != 1.0) {
-			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD), world.random);
+			int resultCountMod = Support.chanceRound(resultStack.getCount() * upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD), world.random);
 			resultStack.setCount(resultCountMod);
 		}
 		
@@ -138,7 +137,7 @@ public class SpiritInstillerRecipe extends GatedStackPastelRecipe<InstanceRecipe
 		if (getExperience() > 0) {
 			double experienceModifier = upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.EXPERIENCE);
 			float recipeExperienceBeforeMod = getExperience();
-			awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
+			awardedExperience = Support.chanceRound(recipeExperienceBeforeMod * experienceModifier, world.random);
 			MultiblockCrafter.spawnExperience(world, pos.above(), awardedExperience);
 		}
 		

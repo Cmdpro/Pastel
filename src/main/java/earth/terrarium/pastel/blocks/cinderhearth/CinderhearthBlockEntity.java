@@ -8,7 +8,6 @@ import earth.terrarium.pastel.api.energy.InkStorageItem;
 import earth.terrarium.pastel.api.energy.color.InkColor;
 import earth.terrarium.pastel.api.energy.color.InkColors;
 import earth.terrarium.pastel.api.energy.storage.IndividualCappedInkStorage;
-import earth.terrarium.pastel.api.item.ExperienceStorageItem;
 import earth.terrarium.pastel.api.recipe.GatedRecipe;
 import earth.terrarium.pastel.blocks.*;
 import earth.terrarium.pastel.blocks.upgrade.Upgradeable;
@@ -90,6 +89,30 @@ public class CinderhearthBlockEntity extends BaseInventoryBlockEntity implements
 	protected CinderHearthStructureType structure = CinderHearthStructureType.NONE;
 	
 	protected final CraftingDelegate propertyDelegate = new CraftingDelegate();
+
+	@Override
+	public int[] getSlotsForFace(Direction side) {
+		if (side != Direction.DOWN)
+			return new int[]{0};
+
+		return OUTPUT_SLOT_IDS;
+	}
+
+	@Override
+	public boolean canPlaceItemThroughFace(int index, ItemStack itemStack, @Nullable Direction direction) {
+		if (index == 0)
+			return direction != Direction.DOWN;
+
+		return false;
+	}
+
+	@Override
+	public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+		if (index != 0)
+			return direction == Direction.DOWN;
+
+		return false;
+	}
 
 	public enum CinderHearthStructureType {
 		NONE,
@@ -375,7 +398,7 @@ public class CinderhearthBlockEntity extends BaseInventoryBlockEntity implements
 		ItemStack output = blastingRecipe.getResultItem(world.registryAccess()).copy();
 		List<ItemStack> outputs = new ArrayList<>();
 		if (yieldMod > 1) {
-			int outputCount = Support.getIntFromDecimalWithChance(output.getCount() * yieldMod, world.random);
+			int outputCount = Support.chanceRound(output.getCount() * yieldMod, world.random);
 			while (outputCount > 0) { // if the rolled count exceeds the max stack size we need to split them (unstackable items, counts > 64, ...)
 				int count = Math.min(outputCount, output.getMaxStackSize());
 				ItemStack outputStack = output.copy();
@@ -402,8 +425,8 @@ public class CinderhearthBlockEntity extends BaseInventoryBlockEntity implements
 	}
 	
 	private static void craftRecipe(@NotNull CinderhearthBlockEntity cinderhearth, ItemStack inputStack, List<ItemStack> outputs, float experience) {
-		var world = cinderhearth.level;
-		if (world == null) return;
+		var level = cinderhearth.level;
+		if (level == null) return;
 		
 		var backupInventory = new FriendlyStackHandler(INVENTORY_SIZE);
 		for (int i = 0; i < cinderhearth.inventory.getSlots(); i++) {
@@ -435,8 +458,14 @@ public class CinderhearthBlockEntity extends BaseInventoryBlockEntity implements
 
 			// grant experience & advancements
 			float experienceMod = cinderhearth.drainInkForUpgrades(cinderhearth, UpgradeType.EXPERIENCE, InkColors.PURPLE, cinderhearth.usesEfficiency);
-			int finalExperience = Support.getIntFromDecimalWithChance(experience * experienceMod, world.random);
-			ExperienceStorageItem.addStoredExperience(world.registryAccess(), cinderhearth.inventory.getStackInSlot(EXPERIENCE_STORAGE_ITEM_SLOT_ID), finalExperience);
+			int finalExperience = Support.chanceRound(experience * experienceMod, level.random);
+
+			var storage = cinderhearth.inventory.getStackInSlot(EXPERIENCE_STORAGE_ITEM_SLOT_ID)
+					.getCapability(PastelCapabilities.Misc.XP, level.registryAccess());
+
+			if (storage != null)
+				storage.insert(finalExperience, false);
+
 			cinderhearth.grantPlayerCinderhearthSmeltingAdvancement(inputStackCopy, outputs, finalExperience);
 		} else {
 			cinderhearth.inventory = backupInventory;

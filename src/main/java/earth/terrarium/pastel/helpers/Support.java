@@ -48,7 +48,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class Support {
-	
+
+	public static float varFloat(RandomSource random, float variance) {
+		return (1F - variance) + random.nextFloat() * variance;
+	}
+
+	public static float varFloatCentered(RandomSource random, float variance) {
+		return 1F + random.nextFloat() * variance - variance / 2F;
+	}
+
 	public static HitResult playerBlockInteractionRaycast(Level world, LivingEntity user, Player player) {
 		double maxDistance = getBlockReachDistance(player);
 		Vec3 eyePos = user.getEyePosition();
@@ -144,7 +152,7 @@ public class Support {
 		}
 	}
 	
-	public static int getIntFromDecimalWithChance(double d, @NotNull RandomSource random) {
+	public static int chanceRound(double d, @NotNull RandomSource random) {
 		boolean roundUp = (random.nextFloat() < d % 1);
 		if (roundUp) {
 			return ((int) d) + 1;

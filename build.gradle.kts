@@ -1,5 +1,8 @@
+import groovy.json.StringEscapeUtils
+
 plugins {
-    id("earth.terrarium.cloche") version "0.10.7"
+    id("earth.terrarium.cloche") version "0.10.18"
+	id("com.teamresourceful.resourcefulgradle") version "0.0.+"
 }
 
 sourceSets.main {
@@ -16,9 +19,11 @@ repositories {
         mavenNeoforged()
     }
 
+    maven(url = "https://maven.resourcefulbees.com/repository/terrarium/")
+
     maven(url = "https://maven.shedaniel.me/") // Cloth config, REI
 
-    maven(url = "https://api.modrinth.com/maven") // Additional Entity Attributes, Jade
+    maven(url = "https://api.modrinth.com/maven") // Additional Entity Attributes
 
     maven(url = "https://maven.terraformersmc.com/") // EMI
 
@@ -36,13 +41,7 @@ repositories {
 
     maven(url = "https://repo.unascribed.com") // Ears API
 
-    maven(url = "https://maven2.bai.lol") // wthit
-
-    // Datagen dependencies
-    maven(url = "https://maven.createmod.net") // Create
-    maven(url = "https://mvn.devos.one/snapshots") // Registrate
-
-    maven(url = "https://cursemaven.com") // (sigh) Gobber
+	maven(url = "https://cursemaven.com") // xycraft
 }
 
 cloche {
@@ -51,10 +50,11 @@ cloche {
     metadata {
         modId = "pastel"
         name = "Pastel"
+		version = System.getenv("VERSION") ?: "1.0.2-BETA"
 
         description = "Do flowers dream of the moon?"
 
-        license = "lGPL3"
+        license = "GNU LGPL v3 for code, ARR for assets"
 
         url = "https://www.curseforge.com/minecraft/mc-mods/pastel"
         sources = "https://github.com/terrarium-earth/Pastel"
@@ -64,6 +64,17 @@ cloche {
 
         dependency {
             modId = "modonomicon"
+            required = true
+        }
+
+        dependency {
+            modId = "cloth_config"
+            required = true
+        }
+
+        dependency {
+            modId = "curios"
+            required = true
         }
 
         author("Azzyypaaras", "azzy@terrarium.earth")
@@ -83,6 +94,7 @@ cloche {
     }
 
     singleTarget {
+        @Suppress("UnstableApiUsage")
         neoforge {
             loaderVersion = "21.1.172"
 
@@ -97,68 +109,55 @@ cloche {
                 "src/main/mixins/pastel.client.mixins.json",
             )
 
-            // TODO Remove these
-            mixins.from(
-                "src/main/mixins/revelationary.mixins.json",
-            )
-
-            val additionalEntityAttributes =
-                module(group = "maven.modrinth", name = "additionalentityattributes", version = "2.0.0+1.21.1-neoforge")
+            val additionalEntityAttributes = module(group = "maven.modrinth", name = "additionalentityattributes", version = "2.0.0+1.21.1-neoforge")
             val jgrapht = module(group = "org.jgrapht", name = "jgrapht-core", version = "1.5.2")
             val jheaps = module(group = "org.jheaps", name = "jheaps", version = "0.14")
+            val revelationary = module(group = "earth.terrarium", name = "revelationary", version = "1.0.1")
 
             include(additionalEntityAttributes)
             include(jgrapht)
             include(jheaps)
+            include(revelationary)
 
             include(module(group = "org.apfloat", name = "apfloat", version = "1.10.1"))
 
             dependencies {
-                compileOnly(module(group = "maven.modrinth", name = "jade", version = "15.10.0+neoforge"))
-
                 modApi(module(group = "me.shedaniel.cloth", name = "cloth-config-neoforge", version = "15.0.140"))
 
-                modImplementation(
-                    module(
-                        group = "com.klikli_dev",
-                        name = "modonomicon-1.21.1-neoforge",
-                        version = "1.114.3"
-                    )
-                ) {
+                modImplementation(module(group = "com.klikli_dev", name = "modonomicon-1.21.1-neoforge", version = "1.114.3")) {
                     exclude(group = "com.klikli_dev")
                     exclude(group = "mezz.jei")
                 }
 
-                modCompileOnly(
-                    module(
-                        group = "me.shedaniel",
-                        name = "RoughlyEnoughItems-neoforge",
-                        version = "16.0.788"
-                    )
-                )
+                modCompileOnly(module(group = "me.shedaniel", name = "RoughlyEnoughItems-neoforge", version = "16.0.788"))
 
+                modImplementation(revelationary)
                 modImplementation(additionalEntityAttributes)
-                implementation(jgrapht)
+                compileOnly(jgrapht)
                 implementation(jheaps)
 
-                modCompileOnly(module(group = "mcp.mobius.waila", name = "wthit-api", version = "neo-12.4.1"))
-
-                modImplementation("dev.emi:emi-neoforge:1.1.19+1.21.1")
+				modImplementation("dev.emi:emi-neoforge:1.1.19+1.21.1")
 
                 modCompileOnly("maven.modrinth:colorful-hearts:10.3.8") { isTransitive = false }
                 modCompileOnly("maven.modrinth:sodium:mc1.21.1-0.6.5-neoforge") { isTransitive = false }
                 modCompileOnly("com.unascribed:ears-api:1.4.6")
-                modCompileOnly("maven.modrinth:create:1.21.1-6.0.4") { isTransitive = false }
-                modCompileOnly("maven.modrinth:lodestonelib:1.7.0") { isTransitive = false }
-                modCompileOnly("maven.modrinth:malum:1.20.1-1.6.5") { isTransitive = false }
-                modCompileOnly("maven.modrinth:travelersbackpack:1.21.1-10.1.20")
                 modCompileOnly("maven.modrinth:botania:1.20.1-448-forge")
-                modCompileOnly("maven.modrinth:vanity:xWfEA0yC")
+				modCompileOnly("maven.modrinth:vanity:xWfEA0yC") // compile only cuz accessories
+
+                modImplementation("maven.modrinth:create:1.21.1-6.0.4") { isTransitive = false }
+                modImplementation("maven.modrinth:lodestonelib:1.7.1") { isTransitive = false }
+                modImplementation("maven.modrinth:malum:1.7.3.1") { isTransitive = false }
+                modImplementation("maven.modrinth:travelersbackpack:1.21.1-10.1.20")
+				modRuntimeOnly("maven.modrinth:ae2:19.2.12") { isTransitive = false }
+				modRuntimeOnly("maven.modrinth:guideme:21.1.13") { isTransitive = false }
+				modRuntimeOnly("curse.maven:xycraft-653786:5601037") { isTransitive = false }
+				modRuntimeOnly("curse.maven:xycraft-machines-653791:5601045") { isTransitive = false }
+				modRuntimeOnly("curse.maven:xycraft-world-653789:5601038") { isTransitive = false }
+				modRuntimeOnly("maven.modrinth:jei:zRGLFYRx") // cuz xycraft >:(
             }
 
             dependencies {
-                val curios =
-                    module(group = "top.theillusivec4.curios", name = "curios-neoforge", version = "9.5.1+1.21.1")
+                val curios = module(group = "top.theillusivec4.curios", name = "curios-neoforge", version = "9.5.1+1.21.1")
 
                 modCompileOnly(curios.copy()) {
                     artifact {
@@ -169,41 +168,11 @@ cloche {
                 modRuntimeOnly(curios)
             }
 
-            data {
-                dependencies {
-                    modImplementation(
-                        module(
-                            group = "org.appliedenergistics",
-                            name = "appliedenergistics2",
-                            version = "19.2.12"
-                        )
-                    )
-                    modImplementation(
-                        "com.simibubi.create:create-1.21.1:6.0.6-99"
-                    ) { isTransitive = false }
-                    modImplementation("com.tterrag.registrate:Registrate:MC1.21-1.3.0+62")
-                    modImplementation("maven.modrinth:vein-mining:bAYRag9u") // todo: is this needed?
-                    modImplementation("maven.modrinth:waystones:21.1.19+neoforge-1.21.1")
-                    modImplementation("maven.modrinth:the-bumblezone:7.10.0+1.21.1-neoforge")
-                    modImplementation("maven.modrinth:farmers-delight:1.21.1-1.2.8")
-                    modImplementation("maven.modrinth:supplementaries:neoforge_1.21-3.3.0")
-                    modImplementation("maven.modrinth:malum:1.7.3.1")
-                    modImplementation("maven.modrinth:chalk-mod:1.6.10")
-//                    modImplementation("curse.maven:gobber-301700:5788529")
-                    modImplementation("maven.modrinth:forgedpaginatedadvancements:0.0.1+1.21.1")
-                    modImplementation("maven.modrinth:moonlight:1.21-2.19.5-neoforge")
-                    modImplementation("maven.modrinth:balm:21.0.46+neoforge-1.21.1")
-                    modImplementation("maven.modrinth:lodestonelib:1.7.1")
-                }
-            }
-            test()
+            data()
 
             runs {
                 server()
-                client {
-                    client()
-                    arguments.addAll("--username", "KatTheFox", "--uuid", "85e987e5-bb15-4e17-ba2b-cc6d3adfc539");
-                }
+                client()
 
                 data()
             }
@@ -216,3 +185,16 @@ cloche {
     }
 }
 
+resourcefulGradle {
+	templates {
+		register("embed") {
+
+			source.set(file("templates/embed.json.template"))
+			injectedValues.set(mapOf(
+				"minecraft" to cloche.minecraftVersion,
+				"version" to System.getenv("VERSION"),
+				"changelog" to StringEscapeUtils.escapeJava(System.getenv("CHANGELOG")),
+			))
+		}
+	}
+}
